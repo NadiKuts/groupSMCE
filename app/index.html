@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="smce" class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My AngularJS App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/openlayers3/build/ol.css">
+    <link rel="stylesheet" href="directives/css/treeview_with_values.css">
+    <link rel="stylesheet" href="app.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+
+<body>
+    <header class="header_div">
+        <p id="titl">Spatial Multi-Criteria Evaluation</p>
+    </header>
+
+    <div id="individ" layout="column">
+        <div flex='100' layout="column">
+            <div ng-controller="NavigationCtrl">
+                <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+                    <md-nav-item md-nav-href="#/" name="method1">Method 1</md-nav-item>
+                    <md-nav-item md-nav-href="#/method2" name="method2">Method 2</md-nav-item>
+                    <md-nav-item md-nav-href="#/methods" name="methods">Methods</md-nav-item>
+                </md-nav-bar>
+            </div>
+            <div id="method_vis" ng-view></div>
+        </div>
+    </div>
+    <div height="auto" ng-controller="criteriaTreeCtrl">
+        <md-button id="collapse_ct" ng-click="toggleCriteriaTree()">{{nameButton}}</md-button>
+        <div layout="row" flex="100">
+            <div class="criteriatree" flex='{{ct_width}}'>
+                <div class="crt" data-angular-treeview="true" data-tree-id="tree01" data-tree-model="criteria" data-node-label="name" data-node-children="children" data-node-value="value" data-node-user="user">
+                </div>
+                <br>
+            </div>
+            <div class="abc" flex='{{viz_width}}' >
+                <!--<div layout="column" ng-repeat="user in users_outputs_inputs">
+                    <div layout="row">
+                        <div class="output" flex="50">
+                            <md-button class="input_butt">{{selectedName}}</md-button>
+                            <div class="user_output">
+                                <md-button class="username" ng-click="showDetailOutput = !showDetailOutput">{{user.username}}</md-button>
+                                <p>{{user["map"]["map"]}}</p>
+                                <div ng-show="showDetailOutput">
+                                    <openlayers class="maps_out" ol-center="user.map.center" height="250px">
+                                        <ol-layer ol-layer-properties="user.map"></ol-layer>
+                                    </openlayers>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input" flex="50">
+                            <div ng-repeat="input in user['input_maps']">
+                                <md-button class="input_butt" ng-click="showDetailOutput = !showDetailOutput">{{input["name"]}}</md-button>
+                                <div ng-show="showDetailOutput">
+                                    <openlayers class="maps_out" ol-center="input.center" height="250px">
+                                        <ol-layer ol-layer-properties="input"></ol-layer>
+                                    </openlayers>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="userMap" ng-repeat="user in users_outputs_inputs">
+                    <div layout="column">
+                        <div class="output">
+                            <md-button class="input_butt">{{selectedName}}</md-button>
+                            <div class="user_output">
+                                <md-button class="username" ng-click="showDetailOutput = !showDetailOutput">{{user.username}}</md-button>
+                                <p>{{user["map"]["map"]}}</p>
+                                <div ng-show="showDetailOutput">
+                                    <openlayers class="maps_out" ol-center="user.map.center" height="250px">
+                                        <ol-layer ol-layer-properties="user.map"></ol-layer>
+                                    </openlayers>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input">
+                            <div ng-repeat="input in user['input_maps']">
+                                <md-button class="input_butt" ng-click="showDetailOutput = !showDetailOutput">{{input["name"]}}</md-button>
+                                <div ng-show="!showDetailOutput">
+                                    <openlayers class="maps_out" ol-center="input.center" height="250px">
+                                        <ol-layer ol-layer-properties="input"></ol-layer>
+                                    </openlayers>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+        <!--<div layout="row" flex="100" style="background-color:violet;">
+            <div class="criteriatree" flex='{{ct_width}}'>
+                <div class="crt" data-angular-treeview="true" data-tree-id="tree01" data-tree-model="criteria" data-node-label="name" data-node-children="children" data-node-value="value" data-node-user="user">
+                </div>
+                <br>
+            </div>
+            <div flex='{{viz_width}}' layout="column">
+                <div layout="column" ng-repeat="user in users_outputs_inputs">
+                    <div layout="row">
+                        <div class="output" flex="50">
+                            <md-button class="input_butt">{{selectedName}}</md-button>
+                            <div class="user_output">
+                                <md-button class="username" ng-click="showDetailOutput = !showDetailOutput">{{user.username}}</md-button>
+                                <p>{{user["map"]["map"]}}</p>
+                                <div ng-show="showDetailOutput">
+                                    <openlayers class="maps_out" ol-center="user.map.center" height="250px">
+                                        <ol-layer ol-layer-properties="user.map"></ol-layer>
+                                    </openlayers>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input" flex="50">
+                            <div ng-repeat="input in user['input_maps']">
+                                <md-button class="input_butt" ng-click="showDetailOutput = !showDetailOutput">{{input["name"]}}</md-button>
+                                <div ng-show="showDetailOutput">
+                                    <openlayers class="maps_out" ol-center="input.center" height="250px">
+                                        <ol-layer ol-layer-properties="input"></ol-layer>
+                                    </openlayers>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/chart.js/dist/Chart.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+    <script src="bower_components/openlayers3/build/ol.js"></script>
+    <script src="bower_components/angular-openlayers-directive/dist/angular-openlayers-directive.js"></script>
+    <script src="directives/treeview_with_values.js"></script>
+    <script src="bower_components/proj4/dist/proj4.js"></script>
+    <script src="http://epsg.io/32735.js"></script>
+    <script src="app.js"></script>
+    <script src="code.js"></script>
+    <script src="method1/method1.js"></script>
+    <script src="method2/method2.js"></script>
+    <script src="methods/methods.js"></script>
+    <script src="services.js"></script>
+    <script src="components/version/version.js"></script>
+    <script src="components/version/version-directive.js"></script>
+    <script src="components/version/interpolate-filter.js"></script>
+
+
+
+
+</body>
+
+</html>

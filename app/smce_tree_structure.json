@@ -1,0 +1,303 @@
+[
+    {
+        "name": "User1",
+        "user": true,
+        "folder": "user1_folder",
+        "id": "cr1",
+        "children": [
+            {
+                "name": "To have institutions fully functional to ensure effective development",
+                "user": false,
+                "value": "1.00",
+                "map": "r3ffi1",
+                "id": "cr11",
+                "children": [
+                    {
+                        "name": "To have adequate public service delivery",
+                        "user": false,
+                        "value": "0.33",
+                        "map": "level_satisf_pub_services",
+                        "id": "cr111",
+                        "children": [
+                            {
+                                "name": "A level of satisfaction with services provided by the local government between 75,00 and 85,00 is good, less is worse and more is better",
+                                "user": false,
+                                "value": "1.00",
+                                "map": "level_satisf",
+                                "id": "cr1111",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "To have adequate trained staff at One Stop Centers",
+                        "user": false,
+                        "value": "0.67",
+                        "map": "osc_trained_staff1",
+                        "id": "cr112",
+                        "children": [
+                            {
+                                "name": "The higher the number of positions covered for Inspection requirements and procedures the better it is",
+                                "user": false,
+                                "value": "0.25",
+                                "map": "osc_inspection",
+                                "id": "cr1121",
+                                "children": []
+                            },
+                            {
+                                "name": "The higher the number of positions covered for Land administration requirements  the better it isand procedures",
+                                "user": false,
+                                "value": "0.38",
+                                "map": "osc_land",
+                                "id": "cr1122",
+                                "children": []
+                            },
+                            {
+                                "name": "The higher the number of positions covered for Building permitting requirement and procedures the better it is",
+                                "user": false,
+                                "value": "0.25",
+                                "map": "osc_build",
+                                "id": "cr1123",
+                                "children": []
+                            },
+                            {
+                                "name": "The higher the number of positions covered for Infrastructure management requirements and procedures the better it is",
+                                "user": false,
+                                "value": "0.13",
+                                "map": "osc_infrastructure",
+                                "id": "cr1124",
+                                "children": []
+                            }
+                        ]
+                    }
+            ]
+            }
+        ]
+    },
+    {
+        "name": "User2",
+        "user": true,
+        "folder": "user2_folder",
+        "id": "cr2",
+        "children": [
+            {
+                "name": "To have institutions fully functional to ensure effective development",
+                "user": false,
+                "value": "1.00",
+                "map": "r3ffi2",
+                "id": "cr21",
+                "children": [
+                    {
+                        "name": "To have adequate public service delivery",
+                        "user": false,
+                        "value": "0.50",
+                        "map": "level_satisf_pub_services",
+                        "id": "cr211",
+                        "children": [
+                            {
+                                "name": "A level of satisfaction with services provided by the local government between 75,00 and 85,00 is good, less is worse and more is better",
+                                "user": false,
+                                "value": "1.00",
+                                "map": "level_satisf",
+                                "id": "cr2111",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "To have adequate trained staff at One Stop Centers",
+                        "user": false,
+                        "value": "0.50",
+                        "map": "osc_trained_staff2",
+                        "id": "cr212",
+                        "children": [
+                            {
+                                "name": "The higher the number of positions covered for Inspection requirements and procedures the better it is",
+                                "user": false,
+                                "value": "0.25",
+                                "map": "osc_inspection",
+                                "id": "cr2121",
+                                "children": []
+                            },
+                            {
+                                "name": "The higher the number of positions covered for Land administration requirements  the better it isand procedures",
+                                "user": false,
+                                "value": "0.25",
+                                "map": "osc_land",
+                                "id": "cr2122",
+                                "children": []
+                            },
+                            {
+                                "name": "The higher the number of positions covered for Building permitting requirement and procedures the better it is",
+                                "user": false,
+                                "value": "0.25",
+                                "map": "osc_build",
+                                "id": "cr2123",
+                                "children": []
+                            },
+                            {
+                                "name": "The higher the number of positions covered for Infrastructure management requirements and procedures the better it is",
+                                "user": false,
+                                "value": "0.25",
+                                "map": "osc_infrastructure",
+                                "id": "cr2124",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+            ]
+    },
+    {
+        "name": "User3",
+        "user": true,
+        "folder": "user3_folder",
+        "id": "cr3",
+        "children": [
+            {
+                "name": "To have institutions fully functional to ensure effective development",
+                "user": false,
+                "value": "1.00",
+                "map": "r3ffi3",
+                "id": "cr31",
+                "children": [
+                    {
+                        "name": "To have adequate public service delivery",
+                        "user": false,
+                        "value": "0.80",
+                        "map": "level_satisf_pub_services",
+                        "id": "cr311",
+                        "children": [
+                            {
+                                "name": "A level of satisfaction with services provided by the local government between 75,00 and 85,00 is good, less is worse and more is better",
+                                "user": false,
+                                "value": "1.00",
+                                "map": "level_satisf",
+                                "id": "cr3111",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "To have adequate trained staff at One Stop Centers",
+                        "user": false,
+                        "value": "0.20",
+                        "map": "osc_trained_staff3",
+                        "id": "cr312",
+                        "children": [
+                            {
+                                "name": "The higher the number of positions covered for Inspection requirements and procedures the better it is",
+                                "user": false,
+                                "value": "0.17",
+                                "map": "osc_inspection",
+                                "id": "cr3121",
+                                "children": []
+                            },
+                            {
+                                "name": "The higher the number of positions covered for Land administration requirements  the better it isand procedures",
+                                "user": false,
+                                "value": "0.50",
+                                "map": "osc_land",
+                                "id": "cr3122",
+                                "children": []
+                            },
+                            {
+                                "name": "The higher the number of positions covered for Building permitting requirement and procedures the better it is",
+                                "user": false,
+                                "value": "0.17",
+                                "map": "osc_build",
+                                "id": "cr3123",
+                                "children": []
+                            },
+                            {
+                                "name": "The higher the number of positions covered for Infrastructure management requirements and procedures the better it is",
+                                "user": false,
+                                "value": "0.17",
+                                "map": "osc_infrastructure",
+                                "id": "cr3124",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+            ]
+    },
+    {
+        "name": "User4",
+        "user": true,
+        "folder": "user4_folder",
+        "id": "cr4",
+        "children": [
+            {
+                "name": "To have institutions fully functional to ensure effective development",
+                "user": false,
+                "value": "1.00",
+                "map": "r3ffi4",
+                "id": "cr41",
+                "children": [
+                    {
+                        "name": "To have adequate public service delivery",
+                        "user": false,
+                        "value": "0.83",
+                        "map": "level_satisf_pub_services",
+                        "id": "cr411",
+                        "children": [
+                            {
+                                "name": "A level of satisfaction with services provided by the local government between 75,00 and 85,00 is good, less is worse and more is better",
+                                "user": false,
+                                "value": "1.00",
+                                "map": "level_satisf",
+                                "id": "cr4111",
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "name": "To have adequate trained staff at One Stop Centers",
+                        "user": false,
+                        "value": "0.17",
+                        "map": "osc_trained_staff4",
+                        "id": "cr412",
+                        "children": [
+                            {
+                                "name": "The higher the number of positions covered for Inspection requirements and procedures the better it is",
+                                "user": false,
+                                "value": "0.08",
+                                "map": "osc_inspection",
+                                "id": "cr4121",
+                                "children": []
+                            },
+                            {
+                                "name": "The higher the number of positions covered for Land administration requirements  the better it isand procedures",
+                                "user": false,
+                                "value": "0.23",
+                                "map": "osc_land",
+                                "id": "cr4122",
+                                "children": []
+                            },
+                            {
+                                "name": "The higher the number of positions covered for Building permitting requirement and procedures the better it is",
+                                "user": false,
+                                "value": "0.23",
+                                "map": "osc_build",
+                                "id": "cr4123",
+                                "children": []
+                            },
+                            {
+                                "name": "The higher the number of positions covered for Infrastructure management requirements and procedures the better it is",
+                                "user": false,
+                                "value": "0.46",
+                                "map": "osc_infrastructure",
+                                "id": "cr4124",
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+            ]
+    }
+
+]

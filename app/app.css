@@ -1,0 +1,149 @@
+html,
+body {
+    height: auto;
+}
+
+.header_div {
+    width: 100%;
+    height: 15%;
+    background-color: #673AB7;
+}
+
+#titl {
+    font-family: Lato;
+    font-size: 2em;
+    color: white;
+    padding-left: 15px;
+    padding-top: 15px;
+}
+#method_vis {
+    height: auto;
+}
+#collapse_ct {
+    width: 20%;
+    background-color: #7C4DFF;
+    color: #EDE7F6;
+}
+
+
+
+
+
+
+
+
+
+
+#titl_map {
+    font-family: Lato;
+    font-size: 1.5em;
+    color: #673AB7;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+md-nav-bar .md-nav-bar{
+    color: #03A9F4;
+}
+
+
+
+
+/* index */
+
+#sw {}
+
+
+/* view1 - statistical view */
+
+#individ {
+    display: flex;
+    height: auto;
+}
+
+.criteriatree {
+    background-color: #EDE7F6;
+    height: auto;
+    width: auto;
+    margin: 1% 1% 0 1%;
+    overflow: auto;
+}
+.abc {
+    overflow-x: scroll;
+    display: inline-flex;
+}
+.userMap{
+    width: 300px;
+    height: auto;
+}
+#comparison {
+    height: 150px;
+    background-color: #EDE7F6;
+    margin: 2% 0 0 2px;
+    width: auto;
+}
+#selection {
+    width: 250px;
+    margin: 2% 0 0 5px;
+}
+
+#const_goal {
+    background-color: #EDE7F6;
+    margin: 2% 0 0 2px;
+    height: auto;
+    width: auto;
+}
+.map_view {
+    padding: 2px;
+    margin: 0 auto;
+    border: 1px solid #ED67F3;
+}
+.main_maps {
+    margin: auto !important;
+}
+#base, #bar {
+    margin: auto !important;
+}
+
+.output {
+    background-color: #EDE7F6;
+    height: auto;
+    margin: 1% 1% 2% 0
+}
+
+.maps_out {
+    width: 280px;
+    margin: auto;
+}
+#comp_button {
+    width: 20%;
+    background-color: #7C4DFF;
+    color: #EDE7F6;
+}
+.username {
+    margin: auto;
+    width: 20%;
+    background-color: #7C4DFF;
+    color: #EDE7F6;
+}
+.input_butt {
+    width: 100%;
+    margin: auto;
+    background-color: #7C4DFF;
+    color: #EDE7F6;
+    margin-bottom: 3px;
+    font-size: 10px;
+}
+
+.input {
+    background-color: #EDE7F6;
+    height: 100%;
+    margin: 1% 2% 2% 0
+}
+.text_st {
+    font-family: Lato;
+    font-size: 20px;
+    color: #673AB7;
+    padding-left: 10px;
+    padding-top: 15px;
+}
