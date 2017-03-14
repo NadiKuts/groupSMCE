@@ -443,47 +443,146 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                 map: ['singleclick']
             }
         },
-        //projection: 'EPSG:3857',
-        mean_map: {
-            source: {
-                type: 'ImageWMS',
-                url: 'http://130.89.221.193:85/geoserver/wms',
-                params: {
-                    'LAYERS': 'nadja_smce:r3_mean_map'
-                }
+        method_1_mean : [
+            {
+                name: 'mean_map',
+                source: {
+                    type: 'ImageWMS',
+                    url: 'http://130.89.221.193:85/geoserver/wms',
+                    params: {
+                        'LAYERS': 'nadja_smce:r3_mean_map'
+                    }
+                },
+                visible: true
             },
-            visible: true
-        },
-        sd_map: {
-            source: {
-                type: 'ImageWMS',
-                url: 'http://130.89.221.193:85/geoserver/wms',
-                params: {
-                    'LAYERS': 'nadja_smce:r3_sd_map'
-                }
+            {
+                name: 'bounds',
+                source: {
+                    type: 'ImageWMS',
+                    url: 'http://130.89.221.193:85/geoserver/wms',
+                    params: {
+                        'LAYERS': 'nadja_smce:districts1'
+                    }
+                },
+                visible: true
             },
-            visible: true
-        },
-        bc_map: {
-            source: {
-                type: 'ImageWMS',
-                url: 'http://130.89.221.193:85/geoserver/wms',
-                params: {
-                    'LAYERS': 'nadja_smce:r3_score_mean_map'
-                }
+            {
+                name: 'highlight1',
+                source: {
+                    type: 'ImageWMS',
+                    url: 'http://130.89.221.193:85/geoserver/wms',
+                    params: {
+                        'LAYERS': 'nadja_smce:districts1method'
+                    }
+                },
+                visible: true
+            }
+        ],
+        method_1_sd : [
+            {
+                name: 'sd_map',
+                source: {
+                    type: 'ImageWMS',
+                    url: 'http://130.89.221.193:85/geoserver/wms',
+                    params: {
+                        'LAYERS': 'nadja_smce:r3_sd_map'
+                    }
+                },
+                visible: true
             },
-            visible: true
-        },
-        bc_sd: {
-            source: {
-                type: 'ImageWMS',
-                url: 'http://130.89.221.193:85/geoserver/wms',
-                params: {
-                    'LAYERS': 'nadja_smce:r3_score_sd_map'
-                }
+            {
+                name: 'bounds',
+                source: {
+                    type: 'ImageWMS',
+                    url: 'http://130.89.221.193:85/geoserver/wms',
+                    params: {
+                        'LAYERS': 'nadja_smce:districts1'
+                    }
+                },
+                visible: true
             },
-            visible: true
-        }
+            {
+                name: 'highlight1',
+                source: {
+                    type: 'ImageWMS',
+                    url: 'http://130.89.221.193:85/geoserver/wms',
+                    params: {
+                        'LAYERS': 'nadja_smce:districts1method'
+                    }
+                },
+                visible: true
+            }
+        ],
+        method_2_mean : [
+            {
+                name: 'score_mean_map',
+                source: {
+                    type: 'ImageWMS',
+                    url: 'http://130.89.221.193:85/geoserver/wms',
+                    params: {
+                        'LAYERS': 'nadja_smce:r3_score_mean_map'
+                    }
+                },
+                visible: true
+            },
+            {
+                name: 'bounds',
+                source: {
+                    type: 'ImageWMS',
+                    url: 'http://130.89.221.193:85/geoserver/wms',
+                    params: {
+                        'LAYERS': 'nadja_smce:districts1'
+                    }
+                },
+                visible: true
+            },
+            {
+                name: 'highlight2',
+                source: {
+                    type: 'ImageWMS',
+                    url: 'http://130.89.221.193:85/geoserver/wms',
+                    params: {
+                        'LAYERS': 'nadja_smce:districts2method'
+                    }
+                },
+                visible: true
+            }
+        ],
+        method_2_sd : [
+            {
+                name: 'score_sd_map',
+                source: {
+                    type: 'ImageWMS',
+                    url: 'http://130.89.221.193:85/geoserver/wms',
+                    params: {
+                        'LAYERS': 'nadja_smce:r3_score_sd_map'
+                    }
+                },
+                visible: true
+            },
+            {
+                name: 'bounds',
+                source: {
+                    type: 'ImageWMS',
+                    url: 'http://130.89.221.193:85/geoserver/wms',
+                    params: {
+                        'LAYERS': 'nadja_smce:districts1'
+                    }
+                },
+                visible: true
+            },
+            {
+                name: 'highlight2',
+                source: {
+                    type: 'ImageWMS',
+                    url: 'http://130.89.221.193:85/geoserver/wms',
+                    params: {
+                        'LAYERS': 'nadja_smce:districts2method'
+                    }
+                },
+                visible: true
+            }
+        ]
     });
 
 

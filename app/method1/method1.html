@@ -3,15 +3,17 @@
         <div class="map_view" flex="30">
             <p id="titl_map">Mean map</p>
             <openlayers class="main_maps" ol-center="center" ol-defaults="defaults" height="250px" width="250px">
-                <ol-layer ol-layer-properties="mean_map"></ol-layer>
-                <ol-layer ol-layer-properties="bounds"></ol-layer>
+                <ol-layer ng-repeat="layer in method_1_mean" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>
+                <!--<ol-layer ol-layer-properties="mean_map"></ol-layer>
+                <ol-layer ol-layer-properties="bounds"></ol-layer>-->
                 <!--<img src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:mean_map">-->
             </openlayers>
         </div>
         <div class="map_view" flex="30">
             <p id="titl_map">Level of agreement</p>
             <openlayers class="main_maps" ol-center="center" ol-defaults="defaults" height="250px" width="250px">
-                <ol-layer ol-layer-properties="sd_map"></ol-layer>
+                <ol-layer ng-repeat="layer in method_1_sd" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>
+                <!--<ol-layer ol-layer-properties="sd_map"></ol-layer>-->
             </openlayers>
         </div>
         <div layout="column" class="map_view" flex="38">
