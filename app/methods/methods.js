@@ -304,9 +304,9 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                         'INFO_FORMAT': 'application/json'
                     });
                     $.getJSON($scope.sd_map_val, function (data) {
-                        $scope.sd_map = parseFloat((data.features[0].properties.GRAY_INDEX).toFixed(2));
-                        console.log("sd_map");
-                        console.log($scope.sd_map);
+                        $scope.sdMap = parseFloat((data.features[0].properties.GRAY_INDEX).toFixed(2));
+                        console.log("sdMap");
+                        console.log($scope.sdMap);
                     });
 
                     /* Score maps */

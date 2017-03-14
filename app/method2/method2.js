@@ -250,7 +250,6 @@ controllers.controller('method2Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                     });
                     
                     /* SCORE MEAN map */
-                    /* mean map */
                     var promises_score_mean_map = [];
                     for (var i = 0; i < $scope.num_users; i++) {
                         // $.getJSON returns a promise
