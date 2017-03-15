@@ -203,8 +203,8 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                 }]
             }
         };
-        
-        
+
+
         $scope.$on('openlayers.map.singleclick', function (event, data) {
             $scope.depends = true;
             $scope.$apply(function () {
@@ -249,7 +249,7 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         $timeout(function () {
                             $scope.dataMaps1[0] = $scope.utility_values;
                             $scope.dataMaps1[1] = $scope.meanMap;
-                            
+
                         }, 1000);
 
                     });
@@ -286,11 +286,30 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         $timeout(function () {
                             $scope.dataMaps1[0] = $scope.utility_values;
                             $scope.dataMaps1[1] = $scope.meanMap;
-                            
+
                         }, 1000);
 
                     });
 
+                    /* DISTRICTS map */
+                    /*--LOOK at this!!!*/
+                    var distr_map = new ol.source.TileWMS({
+                        url: 'http://130.89.221.193:85/geoserver/wms',
+                        params: {
+                            'LAYERS': 'nadja_smce:districts1'
+                        },
+                        serverType: 'geoserver',
+                        buffer: 10
+                    });
+                    $scope.dist_map_val = distr_map.getGetFeatureInfoUrl(data.coord, viewResolution, viewProjection, {
+                        'INFO_FORMAT': 'application/json'
+                    });
+                    $.getJSON($scope.dist_map_val, function (data) {
+                        $scope.distMap = data.features[0].properties.DISTRICT;
+                        console.log("distMap");
+                        console.log($scope.distMap);
+                    });
+                    
                     /* SD map */
                     var sd_map = new ol.source.TileWMS({
                         url: 'http://130.89.221.193:85/geoserver/wms',
@@ -354,7 +373,7 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                 map: ['singleclick']
             }
         },
-        method_1_mean : [
+        method_1_mean: [
             {
                 name: 'mean_map',
                 source: {
@@ -388,9 +407,9 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                 },
                 visible: true
             }
-            
+
         ],
-        method_1_sd : [
+        method_1_sd: [
             {
                 name: 'sd_map',
                 source: {
@@ -425,7 +444,7 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                 visible: true
             }
         ],
-        method_2_mean : [
+        method_2_mean: [
             {
                 name: 'score_mean_map',
                 source: {
@@ -460,7 +479,7 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                 visible: true
             }
         ],
-        method_2_sd : [
+        method_2_sd: [
             {
                 name: 'score_sd_map',
                 source: {
