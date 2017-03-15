@@ -1,5 +1,5 @@
 [
-    {
+    [{
         "name": "User1",
         "user": true,
         "folder": "user1_folder",
@@ -73,8 +73,8 @@
             ]
             }
         ]
-    },
-    {
+    }],
+    [{
         "name": "User2",
         "user": true,
         "folder": "user2_folder",
@@ -148,8 +148,8 @@
                 ]
             }
             ]
-    },
-    {
+    }],
+    [{
         "name": "User3",
         "user": true,
         "folder": "user3_folder",
@@ -223,8 +223,8 @@
                 ]
             }
             ]
-    },
-    {
+    }],
+    [{
         "name": "User4",
         "user": true,
         "folder": "user4_folder",
@@ -298,6 +298,6 @@
                 ]
             }
             ]
-    }
+    }]
 
 ]

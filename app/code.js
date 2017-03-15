@@ -12,12 +12,12 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
         $scope.num_users = $scope.criteria.length;
 
         /* Names of Decision-makers */
-        $scope.dm_names = $scope.criteria.map(function (dm) {
+        $scope.dm_names = $scope.criteria[0].map(function (dm) {
             return dm.name;
         });
 
         /* Utility maps of individual smce */
-        $scope.dm_maps = $scope.criteria.map(function (dm) {
+        $scope.dm_maps = $scope.criteria[0].map(function (dm) {
             return dm.children[0].map;
         });
 
@@ -62,13 +62,15 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
         $scope.flatten_tree = [];
         for (var user = 0; user < $scope.num_users; user++) {
             $scope.user = {
-                "username": $scope.criteria[user].name,
-                "maps": $scope.flatten($scope.criteria[user])
+                "username": $scope.criteria[user][0].name,
+                "maps": $scope.flatten($scope.criteria[user][0])
             };
             $scope.flatten_tree.push($scope.user);
 
         }
-
+        
+        console.log("flatten_tree");
+        console.log($scope.flatten_tree);
 
         /* Function for displaying output */
 

@@ -46,7 +46,7 @@
         <md-button id="collapse_ct" ng-click="toggleCriteriaTree()">{{nameButton}}</md-button>
         <div layout="row" flex="100">
             <div class="criteriatree" flex='{{ct_width}}'>
-                <div class="crt" data-angular-treeview="true" data-tree-id="tree01" data-tree-model="criteria" data-node-label="name" data-node-children="children" data-node-value="value" data-node-user="user">
+                <div ng-repeat="crit in criteria" class="crt" data-angular-treeview="true" data-tree-id="tree01" data-tree-model="crit" data-node-label="name" data-node-children="children" data-node-value="value" data-node-user="user">
                 </div>
                 <br>
             </div>
