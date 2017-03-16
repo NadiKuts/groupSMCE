@@ -188,13 +188,18 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
                 /* Do not show anything in "output" panel, if user click on "User" in criteria tree*/
                 console.log("It is user - nothing to show!");
             }
-
-
         };
-
-        $scope.displayInputs = function (selectedName, id) {
-
+        
+        $scope.delete_user = function (id) {
+            console.log("id "+id);
+            for (var i = 0; i < $scope.users_outputs_inputs.length; i++) {
+                if ($scope.users_outputs_inputs[i].id == id) {
+                    $scope.users_outputs_inputs.splice(i, 1);
+                }
+            }
+            console.log($scope.users_outputs_inputs);
         }
+        
 
         /* Toggling criteria tree panel */
 
