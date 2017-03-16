@@ -2,7 +2,7 @@
     <div id="const_goal" layout="row">
         <div class="map_view" flex="30">
             <p id="titl_map">Mean map</p>
-            <openlayers class="main_maps" ol-center="center" ol-defaults="defaults" height="250px" width="250px">
+            <openlayers class="main_maps" ol-center="center_main" ol-defaults="defaults" >
                 <ol-layer ng-repeat="layer in method_1_mean" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>
                 <!--<ol-layer ol-layer-properties="mean_map"></ol-layer>
                 <ol-layer ol-layer-properties="bounds"></ol-layer>-->
@@ -11,7 +11,7 @@
         </div>
         <div class="map_view" flex="30">
             <p id="titl_map">Level of agreement</p>
-            <openlayers class="main_maps" ol-center="center" ol-defaults="defaults" height="250px" width="250px">
+            <openlayers class="main_maps" ol-center="center_main" ol-defaults="defaults">
                 <ol-layer ng-repeat="layer in method_1_sd" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>
                 <!--<ol-layer ol-layer-properties="sd_map"></ol-layer>-->
             </openlayers>
@@ -34,9 +34,5 @@
                 <input flex="" type="number" ng-model="sdMap" aria-label="red" aria-controls="red-slider">
             </md-input-container>
         </div>
-    </div>
-    <div id="comparison">
-
-        <md-button id="comp_button">Compare</md-button>
     </div>
 </div>

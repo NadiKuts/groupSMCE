@@ -2,23 +2,21 @@
     <div id="const_goal" layout="row">
         <div class="map_view" flex="30">
             <p id="titl_map">Mean map</p>
-            <openlayers class="main_maps" ol-center="center" ol-defaults="defaults" height="250px" width="250px">
+            <openlayers class="main_maps2" ol-center="center_main" ol-defaults="defaults">
                 <ol-layer ng-repeat="layer in method_1_mean" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>
-                <!--<ol-layer ol-layer-properties="mean_map"></ol-layer>-->
                 <!--<img src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:mean_map">-->
             </openlayers>
         </div>
         <div class="map_view" flex="30">
             <p id="titl_map">Level of agreement</p>
-            <openlayers class="main_maps" ol-center="center" ol-defaults="defaults" height="250px" width="250px">
+            <openlayers class="main_maps2" ol-center="center_main" ol-defaults="defaults">
                 <ol-layer ng-repeat="layer in method_1_sd" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>
-                <!--<ol-layer ol-layer-properties="sd_map"></ol-layer>-->
             </openlayers>
         </div>
         <div class="map_view" flex="38">
             <p id="titl_map">Diagram</p>
             <div class="canvas" width="100%">
-                <canvas id="base" class="chart-bar" chart-data="dataMaps1" chart-labels="dm_names" chart-colors="colors" chart-dataset-override="datasetOverride" chart-options="chartOptions1">
+                <canvas id="base" class="chart-bar" chart-data="dataMaps1" chart-labels="dm_names" chart-colors="colors" chart-dataset-override="datasetOverride1" chart-options="chartOptions1">
                 </canvas>
             </div>
             <p id="titl_map">Level of agreement</p>
@@ -37,7 +35,7 @@
     <div id="const_goal" layout="row">
         <div class="map_view" flex="30">
             <p id="titl_map">Score map</p>
-            <openlayers class="main_maps" ol-center="center" ol-defaults="defaults" height="250px" width="250px">
+            <openlayers class="main_maps2" ol-center="center_main" ol-defaults="defaults">
                 <ol-layer ng-repeat="layer in method_2_mean" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>
                 <!--<ol-layer ol-layer-properties="bc_map"></ol-layer>-->
                 <!--<img src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:mean_map">-->
@@ -45,7 +43,7 @@
         </div>
         <div class="map_view" flex="30">
             <p id="titl_map">Level of agreement</p>
-            <openlayers class="main_maps" ol-center="center" ol-defaults="defaults" height="250px" width="250px">
+            <openlayers class="main_maps2" ol-center="center_main" ol-defaults="defaults">
                 <ol-layer ng-repeat="layer in method_2_sd" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>
                 <!--<ol-layer ol-layer-properties="bc_sd"></ol-layer>-->
             </openlayers>
@@ -53,7 +51,7 @@
         <div class="map_view" flex="38">
             <p id="titl_map">Diagram</p>
             <div class="canvas" width="100%" layout="row">
-                <canvas id="base" class="chart-bar" chart-data="dataMaps2" chart-labels="dm_names" chart-colors="colors" chart-dataset-override="datasetOverride" chart-options="chartOptions2">
+                <canvas id="base" class="chart-bar" chart-data="dataMaps2" chart-labels="dm_names" chart-colors="colors" chart-dataset-override="datasetOverride2" chart-options="chartOptions2">
                 </canvas>
             </div>
             <p id="titl_map">Level of agreement</p>
@@ -68,9 +66,5 @@
                 <input flex="" type="number" ng-model="sd_score_map" aria-label="red" aria-controls="red-slider">
             </md-input-container>
         </div>
-    </div>
-    <div id="comparison">
-
-        <md-button id="comp_button">Compare</md-button>
     </div>
 </div>

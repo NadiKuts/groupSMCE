@@ -12,13 +12,13 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
         $scope.num_users = $scope.criteria.length;
 
         /* Names of Decision-makers */
-        $scope.dm_names = $scope.criteria[0].map(function (dm) {
-            return dm.name;
+        $scope.dm_names = $scope.criteria.map(function (dm) {
+            return dm[0].name;
         });
 
         /* Utility maps of individual smce */
-        $scope.dm_maps = $scope.criteria[0].map(function (dm) {
-            return dm.children[0].map;
+        $scope.dm_maps = $scope.criteria.map(function (dm) {
+            return dm[0].children[0].map;
         });
 
         /* Score individual maps */
@@ -27,10 +27,11 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
         });
 
         $scope.colors = ['#45b7cd', '#ff6384', '#ff8e72'];
+        $scope.labels = $scope.dm_names;
+        $scope.scores = [[0, 0, 0, 0], [0, 0, 0, 0]];
         $scope.dataMaps1 = [[0, 0, 0, 0], [0, 0, 0, 0]];
         $scope.dataMaps2 = [[0, 0, 0, 0], [0, 0, 0, 0]];
-        $scope.scores = [[0, 0, 0, 0], [0, 0, 0, 0]];
-        $scope.datasetOverride = [
+        $scope.datasetOverride1 = [
             {
                 label: "Utility value",
                 borderWidth: 1,
@@ -44,7 +45,21 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                 type: 'line'
                 }
             ];
-
+        $scope.datasetOverride2 = [
+            {
+                label: "Score",
+                borderWidth: 1,
+                type: 'bar'
+                },
+            {
+                label: "Mean score",
+                borderWidth: 1,
+                hoverBackgroundColor: "rgba(255,99,132,0.4)",
+                hoverBorderColor: "rgba(255,99,132,1)",
+                type: 'line'
+                }
+            ];
+        
         $scope.chartOptions1 = {
             scales: {
                 yAxes: [{
@@ -71,8 +86,8 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                 }]
             }
         };
-        
-        
+
+
         $scope.$on('openlayers.map.singleclick', function (event, data) {
             $scope.depends = true;
             $scope.$apply(function () {
@@ -82,8 +97,24 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                     var viewProjection = view.getProjection();
                     var viewResolution = view.getResolution();
                     var zoom = view.getZoom();
-
-
+                    
+                    /* DISTRICTS map */
+                    var distr_map = new ol.source.TileWMS({
+                        url: 'http://130.89.221.193:85/geoserver/wms',
+                        params: {
+                            'LAYERS': 'nadja_smce:districts1'
+                        },
+                        serverType: 'geoserver',
+                        buffer: 10
+                    });
+                    $scope.dist_map_val = distr_map.getGetFeatureInfoUrl(data.coord, viewResolution, viewProjection, {
+                        'INFO_FORMAT': 'application/json'
+                    });
+                    $.getJSON($scope.dist_map_val, function (data) {
+                        $scope.distMap = data.features[0].properties.DISTRICT;
+                        console.log("distMap");
+                        console.log($scope.distMap);
+                    });
 
                     /* Utility maps */
                     var promises_ut = [];
@@ -117,7 +148,7 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                         $timeout(function () {
                             $scope.dataMaps1[0] = $scope.utility_values;
                             $scope.dataMaps1[1] = $scope.meanMap;
-                            
+
                         }, 1000);
 
                     });
@@ -154,7 +185,7 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                         $timeout(function () {
                             $scope.dataMaps1[0] = $scope.utility_values;
                             $scope.dataMaps1[1] = $scope.meanMap;
-                            
+
                         }, 1000);
 
                     });
@@ -195,7 +226,7 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                         promises_sc.push($.getJSON(map_dm));
                     }
                     $.when.apply($, promises_sc).then(function () {
-                        
+
                         $scope.scores = [];
 
                         // This callback will be passed the result of each AJAX call as a parameter
@@ -209,7 +240,7 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                             $scope.dataMaps2[1] = $scope.scoreMeanMap;
                         }, 1000);
                     });
-                    
+
                     /* SCORE MEAN map */
                     /* mean map */
                     var promises_score_mean_map = [];
@@ -242,11 +273,11 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                         $timeout(function () {
                             $scope.dataMaps2[0] = $scope.scores;
                             $scope.dataMaps2[1] = $scope.scoreMeanMap;
-                            
+
                         }, 1000);
 
                     });
-                    
+
                     /* SD SCORE map */
                     var sd_score_map = new ol.source.TileWMS({
                         url: 'http://130.89.221.193:85/geoserver/wms',
@@ -267,36 +298,7 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
 
                 });
             });
-
-
-            $scope.labels = $scope.dm_names;
-            $scope.colors = ['#45b7cd', '#ff6384', '#ff8e72'];
-
-            //$scope.data = [$scope.utility_values, $scope.meanMap];
-            $scope.datasetOverride = [
-                {
-                    label: "Utility value",
-                    borderWidth: 1,
-                    type: 'bar'
-                },
-                {
-                    label: "Mean",
-                    borderWidth: 1,
-                    hoverBackgroundColor: "rgba(255,99,132,0.4)",
-                    hoverBorderColor: "rgba(255,99,132,1)",
-                    type: 'line'
-                }
-            ];
-
-
         });
-
-
-
-
-
-
-
     });
 
     /*Maps, Openlayers*/
@@ -306,12 +308,17 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
             lon: 29.87,
             zoom: 7.5
         },
+        center_main: {
+            lat: -1.95,
+            lon: 29.87,
+            zoom: 7.5
+        },
         defaults: {
             events: {
                 map: ['singleclick']
             }
         },
-        method_1_mean : [
+        method_1_mean: [
             {
                 name: 'mean_map',
                 source: {
@@ -346,7 +353,7 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                 visible: true
             }
         ],
-        method_1_sd : [
+        method_1_sd: [
             {
                 name: 'sd_map',
                 source: {
@@ -381,7 +388,7 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                 visible: true
             }
         ],
-        method_2_mean : [
+        method_2_mean: [
             {
                 name: 'score_mean_map',
                 source: {
@@ -416,7 +423,7 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                 visible: true
             }
         ],
-        method_2_sd : [
+        method_2_sd: [
             {
                 name: 'score_sd_map',
                 source: {
@@ -452,6 +459,4 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
             }
         ]
     });
-
-
 }]);

@@ -12,13 +12,13 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
         $scope.num_users = $scope.criteria.length;
 
         /* Names of Decision-makers */
-        $scope.dm_names = $scope.criteria[0].map(function (dm) {
-            return dm.name;
+        $scope.dm_names = $scope.criteria.map(function (dm) {
+            return dm[0].name;
         });
 
         /* Utility maps of individual smce */
-        $scope.dm_maps = $scope.criteria[0].map(function (dm) {
-            return dm.children[0].map;
+        $scope.dm_maps = $scope.criteria.map(function (dm) {
+            return dm[0].children[0].map;
         });
 
         /* Score individual maps */
@@ -28,8 +28,9 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
 
 
         $scope.colors = ['#45b7cd', '#ff6384', '#ff8e72'];
-        $scope.dataMaps1 = [[0, 0, 0, 0], [0, 0, 0, 0]];
+        $scope.labels = $scope.dm_names;
         $scope.scores = [[0, 0, 0, 0], [0, 0, 0, 0]];
+        $scope.dataMaps1 = [[0, 0, 0, 0], [0, 0, 0, 0]];
         $scope.datasetOverride = [
             {
                 label: "Utility value",
@@ -44,7 +45,6 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                 type: 'line'
                 }
             ];
-
         $scope.chartOptions1 = {
             scales: {
                 yAxes: [{
@@ -54,19 +54,6 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                     ticks: {
                         min: 0,
                         max: 1
-                    }
-                }]
-            }
-        };
-        $scope.chartOptions2 = {
-            scales: {
-                yAxes: [{
-                    id: 'y-axis-1',
-                    type: 'linear',
-                    position: 'left',
-                    ticks: {
-                        min: 0,
-                        max: 4
                     }
                 }]
             }
@@ -82,8 +69,24 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                     var viewProjection = view.getProjection();
                     var viewResolution = view.getResolution();
                     var zoom = view.getZoom();
-
-
+                    
+                    /* DISTRICTS map */
+                    var distr_map = new ol.source.TileWMS({
+                        url: 'http://130.89.221.193:85/geoserver/wms',
+                        params: {
+                            'LAYERS': 'nadja_smce:districts1'
+                        },
+                        serverType: 'geoserver',
+                        buffer: 10
+                    });
+                    $scope.dist_map_val = distr_map.getGetFeatureInfoUrl(data.coord, viewResolution, viewProjection, {
+                        'INFO_FORMAT': 'application/json'
+                    });
+                    $.getJSON($scope.dist_map_val, function (data) {
+                        $scope.distMap = data.features[0].properties.DISTRICT;
+                        console.log("distMap");
+                        console.log($scope.distMap);
+                    });
 
                     /* Utility maps */
                     var promises_ut = [];
@@ -158,25 +161,6 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         }, 1000);
 
                     });
-
-                    /* DISTRICTS map */
-                    /*--LOOK at this!!!*/
-                    var distr_map = new ol.source.TileWMS({
-                        url: 'http://130.89.221.193:85/geoserver/wms',
-                        params: {
-                            'LAYERS': 'nadja_smce:districts1'
-                        },
-                        serverType: 'geoserver',
-                        buffer: 10
-                    });
-                    $scope.dist_map_val = distr_map.getGetFeatureInfoUrl(data.coord, viewResolution, viewProjection, {
-                        'INFO_FORMAT': 'application/json'
-                    });
-                    $.getJSON($scope.dist_map_val, function (data) {
-                        $scope.distMap = data.features[0].properties.DISTRICT;
-                        console.log("distMap");
-                        console.log($scope.distMap);
-                    });
                     
                     /* SD map */
                     var sd_map = new ol.source.TileWMS({
@@ -197,36 +181,7 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                     });
                 });
             });
-
-
-            $scope.labels = $scope.dm_names;
-            $scope.colors = ['#45b7cd', '#ff6384', '#ff8e72'];
-
-            //$scope.data = [$scope.utility_values, $scope.meanMap];
-            $scope.datasetOverride = [
-                {
-                    label: "Utility value",
-                    borderWidth: 1,
-                    type: 'bar'
-                },
-                {
-                    label: "Mean",
-                    borderWidth: 1,
-                    hoverBackgroundColor: "rgba(255,99,132,0.4)",
-                    hoverBorderColor: "rgba(255,99,132,1)",
-                    type: 'line'
-                }
-            ];
-
-
         });
-
-
-
-
-
-
-
     });
 
     /*Maps, Openlayers*/
@@ -235,6 +190,11 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
             lat: -1.95,
             lon: 29.87,
             zoom: 7.5
+        },
+        center_main: {
+            lat: -1.95,
+            lon: 29.87,
+            zoom: 8
         },
         defaults: {
             events: {

@@ -16,23 +16,16 @@ body {
     padding-left: 15px;
     padding-top: 15px;
 }
+
 #method_vis {
     height: auto;
 }
+
 #collapse_ct {
     width: 20%;
     background-color: #7C4DFF;
     color: #EDE7F6;
 }
-
-
-
-
-
-
-
-
-
 
 #titl_map {
     font-family: Lato;
@@ -42,11 +35,9 @@ body {
     padding-top: 5px;
 }
 
-md-nav-bar .md-nav-bar{
+md-nav-bar .md-nav-bar {
     color: #03A9F4;
 }
-
-
 
 
 /* index */
@@ -56,32 +47,44 @@ md-nav-bar .md-nav-bar{
 
 /* view1 - statistical view */
 
-#individ {
+#methods {
     display: flex;
     height: auto;
+}
+#crt_panel {
+    height: auto;
+    overflow: auto;
 }
 
 .criteriatree {
     background-color: #EDE7F6;
-    height: auto;
+    height: 600px;
     width: auto;
     margin: 1% 1% 0 1%;
     overflow: auto;
 }
-.abc {
-    overflow-x: scroll;
-    display: inline-flex;
-}
-.userMap{
+
+.userMap {
     width: 300px;
     height: auto;
+    padding-right: 3px;
 }
+.mapsPanel {
+    background-color: #EDE7F6;
+    width: 100%;
+    height: inherit;
+    margin: 1% 1% 0 0;
+    overflow-y: auto;
+    display: inline-flex;
+}
+
 #comparison {
     height: 150px;
     background-color: #EDE7F6;
     margin: 2% 0 0 2px;
     width: auto;
 }
+
 #selection {
     width: 250px;
     margin: 2% 0 0 5px;
@@ -89,19 +92,30 @@ md-nav-bar .md-nav-bar{
 
 #const_goal {
     background-color: #EDE7F6;
-    margin: 2% 0 0 2px;
+    margin: 4px 0 0 2px;
     height: auto;
     width: auto;
 }
+
 .map_view {
     padding: 2px;
     margin: 0 auto;
-    border: 1px solid #ED67F3;
+    
 }
+
 .main_maps {
     margin: auto !important;
+    height: 400px;
+    width: 400px
 }
-#base, #bar {
+.main_maps2 {
+    margin: auto !important;
+    height: 300px;
+    width: 350px
+}
+
+#base,
+#bar {
     margin: auto !important;
 }
 
@@ -115,17 +129,20 @@ md-nav-bar .md-nav-bar{
     width: 280px;
     margin: auto;
 }
+
 #comp_button {
     width: 20%;
     background-color: #7C4DFF;
     color: #EDE7F6;
 }
+
 .username {
     margin: auto;
     width: 20%;
     background-color: #7C4DFF;
     color: #EDE7F6;
 }
+
 .input_butt {
     width: 100%;
     margin: auto;
@@ -140,6 +157,7 @@ md-nav-bar .md-nav-bar{
     height: 100%;
     margin: 1% 2% 2% 0
 }
+
 .text_st {
     font-family: Lato;
     font-size: 20px;
