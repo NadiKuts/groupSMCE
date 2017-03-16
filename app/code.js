@@ -75,11 +75,10 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
         /* Function for displaying output */
 
         /*First, I need to create an array, where I will check, if the current user (clicked on) is already on the panel*/
-
-
-
         $scope.users_outputs_inputs = [];
 
+
+        /* Function for visualization maps of decision makers on criteria panel onclick */
         $scope.displayOutput = function (output, id) {
             $scope.id_user = parseInt(id.charAt(2), 10) - 1;
             $scope.selectedName = output;
@@ -94,20 +93,35 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
                             $scope.inpMap = {
                                 "mapname": $scope.flatten_tree[$scope.id_user]["maps"][i]["children"][j]["name"],
                                 "map": {
-                                    name: $scope.flatten_tree[$scope.id_user]["maps"][i]["children"][j]["map"],
                                     center: {
                                         lat: -1.95,
                                         lon: 29.87,
                                         zoom: 7.5
                                     },
-                                    source: {
-                                        type: 'ImageWMS',
-                                        url: 'http://130.89.221.193:85/geoserver/wms',
-                                        params: {
-                                            'LAYERS': 'nadja_smce:' + $scope.flatten_tree[$scope.id_user]["maps"][i]["children"][j]["map"]
+                                    layers_name: [
+                                        {
+                                            name: $scope.flatten_tree[$scope.id_user]["maps"][i]["children"][j]["map"],
+                                            source: {
+                                                type: 'ImageWMS',
+                                                url: 'http://130.89.221.193:85/geoserver/wms',
+                                                params: {
+                                                    'LAYERS': 'nadja_smce:' + $scope.flatten_tree[$scope.id_user]["maps"][i]["children"][j]["map"]
+                                                }
+                                            },
+                                            visible: true
+                                        },
+                                        {
+                                            name: 'bounds',
+                                            source: {
+                                                type: 'ImageWMS',
+                                                url: 'http://130.89.221.193:85/geoserver/wms',
+                                                params: {
+                                                    'LAYERS': 'nadja_smce:districts1'
+                                                }
+                                            },
+                                            visible: true
                                         }
-                                    },
-                                    visible: true
+                                    ],
                                 }
                             };
                             $scope.inputMaps.push($scope.inpMap);
@@ -117,24 +131,38 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
                             "mapname": $scope.flatten_tree[$scope.id_user]["maps"][i]["name"],
                             "username": $scope.flatten_tree[$scope.id_user]["username"],
                             "map": {
-                                name: $scope.flatten_tree[$scope.id_user]["maps"][i]["map"],
                                 center: {
                                     lat: -1.95,
                                     lon: 29.87,
                                     zoom: 7.5
                                 },
-                                source: {
-                                    type: 'ImageWMS',
-                                    url: 'http://130.89.221.193:85/geoserver/wms',
-                                    params: {
-                                        'LAYERS': 'nadja_smce:' + $scope.flatten_tree[$scope.id_user]["maps"][i]["map"]
-                                    }
-                                },
-                                visible: true
-                            },
-                            "input_maps": $scope.inputMaps
+                                layers_name: [
+                                        {
+                                            name: $scope.flatten_tree[$scope.id_user]["maps"][i]["map"],
+                                            source: {
+                                                type: 'ImageWMS',
+                                                url: 'http://130.89.221.193:85/geoserver/wms',
+                                                params: {
+                                                    'LAYERS': 'nadja_smce:' + $scope.flatten_tree[$scope.id_user]["maps"][i]["map"]
+                                                }
+                                            },
+                                            visible: true
+                                        },
+                                        {
+                                            name: 'bounds',
+                                            source: {
+                                                type: 'ImageWMS',
+                                                url: 'http://130.89.221.193:85/geoserver/wms',
+                                                params: {
+                                                    'LAYERS': 'nadja_smce:districts1'
+                                                }
+                                            },
+                                            visible: true
+                                        }
+                                    ],
+                            }
                         };
-                        
+
                         $scope.userProfile = {
                             "id": $scope.id_user,
                             "output": $scope.userOutput,
@@ -155,72 +183,6 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
                     $scope.users_outputs_inputs.push($scope.userProfile);
                 }
                 console.log($scope.users_outputs_inputs);
-
-                /*$scope.selectedName = output;
-                console.log($scope.selectedName);
-
-                $scope.all_users_map = [];
-                $scope.all_users_map.push($scope.flatten_tree[$scope.id_user - 1]);
-                for (var i = 0; i < $scope.flatten_tree.length; i++) {
-                    if (i != $scope.id_user - 1) {
-                        $scope.all_users_map.push($scope.flatten_tree[i]);
-                    }
-                }
-                console.log("all_users_map");
-                console.log($scope.all_users_map);
-
-                $scope.selectedUsers = [];
-
-                $scope.users_outputs_inputs = [];
-                for (var i = 0; i < $scope.all_users_map.length; i++) {
-                    for (var j = 0; j < $scope.all_users_map[i]["maps"].length; j++) {
-                        if ($scope.all_users_map[i]["maps"][j]["name"] == output) {
-                            $scope.inputs = [];
-                            for (var inp = 0; inp < $scope.all_users_map[i]["maps"][j]["children"].length; inp++) {
-                                $scope.inputs.push({
-                                    name: $scope.all_users_map[i]["maps"][j]["children"][inp]["name"],
-                                    center: {
-                                        lat: -1.95,
-                                        lon: 29.87,
-                                        zoom: 7.5
-                                    },
-                                    source: {
-                                        type: 'ImageWMS',
-                                        url: 'http://130.89.221.193:85/geoserver/wms',
-                                        params: {
-                                            'LAYERS': 'nadja_smce:' + $scope.all_users_map[i]["maps"][j]["children"][inp]["map"]
-                                        }
-                                    },
-                                    visible: true
-                                });
-                            };
-
-                            $scope.users_outputs_inputs.push({
-                                "username": $scope.all_users_map[i]["username"],
-                                "map": {
-                                    name: $scope.all_users_map[i]["maps"][j]["name"],
-                                    center: {
-                                        lat: -1.95,
-                                        lon: 29.87,
-                                        zoom: 7.5
-                                    },
-                                    source: {
-                                        type: 'ImageWMS',
-                                        url: 'http://130.89.221.193:85/geoserver/wms',
-                                        params: {
-                                            'LAYERS': 'nadja_smce:' + $scope.all_users_map[i]["maps"][j]["map"]
-                                        }
-                                    },
-                                    visible: true
-                                },
-                                "input_maps": $scope.inputs
-                            });
-                        }
-                    }
-                }
-                console.log("users_inputs");
-                console.log($scope.users_outputs_inputs);*/
-                //console.log($scope.users_inputs[0].map.)
 
             } else {
                 /* Do not show anything in "output" panel, if user click on "User" in criteria tree*/

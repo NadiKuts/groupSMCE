@@ -60,7 +60,7 @@
                                 <md-button class="username" ng-click="showDetailOutput = !showDetailOutput">{{user.output.username}}</md-button>
                                 <div ng-show="showDetailOutput">
                                     <openlayers class="maps_out" ol-center="user.output.map.center" height="250px">
-                                        <ol-layer ol-layer-properties="user.output.map"></ol-layer>
+                                        <ol-layer ng-repeat="lay in user.output.map.layers_name" ol-layer-properties="lay"></ol-layer>
                                     </openlayers>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
                                 <md-button class="input_butt" ng-click="showDetailOutput = !showDetailOutput">{{input.mapname}}</md-button>
                                 <div ng-show="!showDetailOutput">
                                     <openlayers class="maps_out" ol-center="input.map.center" height="250px">
-                                        <ol-layer ol-layer-properties="input.map"></ol-layer>
+                                        <ol-layer ng-repeat="lay in input.map.layers_name" ol-layer-properties="lay"></ol-layer>
                                     </openlayers>
                                 </div>
                             </div>
