@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My AngularJS App</title>
+    <title>Group SMCE</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -30,7 +30,7 @@
         <p id="titl">Spatial Multi-Criteria Evaluation</p>
     </header>
 
-    <div id="individ" layout="column">
+    <div id="methods" layout="column">
         <div flex='100' layout="column">
             <div ng-controller="NavigationCtrl">
                 <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
@@ -42,7 +42,7 @@
             <div id="method_vis" ng-view></div>
         </div>
     </div>
-    <div height="auto" ng-controller="criteriaTreeCtrl">
+    <div id="crt_panel" ng-controller="criteriaTreeCtrl">
         <md-button id="collapse_ct" ng-click="toggleCriteriaTree()">{{nameButton}}</md-button>
         <div layout="row" flex="100">
             <div class="criteriatree" flex='{{ct_width}}'>
@@ -50,35 +50,37 @@
                 </div>
                 <br>
             </div>
-            <div class="abc" flex='{{viz_width}}' >
-                <!--<div layout="column" ng-repeat="user in users_outputs_inputs">
-                    <div layout="row">
-                        <div class="output" flex="50">
-                            <md-button class="input_butt">{{selectedName}}</md-button>
-                            <div class="user_output">
-                                <md-button class="username" ng-click="showDetailOutput = !showDetailOutput">{{user.username}}</md-button>
-                                <p>{{user["map"]["map"]}}</p>
-                                <div ng-show="showDetailOutput">
-                                    <openlayers class="maps_out" ol-center="user.map.center" height="250px">
-                                        <ol-layer ol-layer-properties="user.map"></ol-layer>
-                                    </openlayers>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="input" flex="50">
-                            <div ng-repeat="input in user['input_maps']">
-                                <md-button class="input_butt" ng-click="showDetailOutput = !showDetailOutput">{{input["name"]}}</md-button>
-                                <div ng-show="showDetailOutput">
-                                    <openlayers class="maps_out" ol-center="input.center" height="250px">
-                                        <ol-layer ol-layer-properties="input"></ol-layer>
-                                    </openlayers>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
+            <div class="mapsPanel" flex='{{viz_width}}'>
                 <div class="userMap" ng-repeat="user in users_outputs_inputs">
                     <div layout="column">
+                        <md-button>Delete</md-button>
+                        <div class="output">
+                            <p class="input_butt">{{user.output.mapname}}</p>
+                            <div class="user_output">
+                                <md-button class="username" ng-click="showDetailOutput = !showDetailOutput">{{user.output.username}}</md-button>
+                                <div ng-show="showDetailOutput">
+                                    <openlayers class="maps_out" ol-center="user.output.map.center" height="250px">
+                                        <ol-layer ol-layer-properties="user.output.map"></ol-layer>
+                                    </openlayers>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input">
+                            <div ng-repeat="input in user['inputs']">
+                                <md-button class="input_butt" ng-click="showDetailOutput = !showDetailOutput">{{input.mapname}}</md-button>
+                                <div ng-show="!showDetailOutput">
+                                    <openlayers class="maps_out" ol-center="input.map.center" height="250px">
+                                        <ol-layer ol-layer-properties="input.map"></ol-layer>
+                                    </openlayers>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--<div class="userMap" ng-repeat="user in users_outputs_inputs">
+                    <div layout="column">
+                        <md-button>Delete</md-button>
                         <div class="output">
                             <md-button class="input_butt">{{selectedName}}</md-button>
                             <div class="user_output">
@@ -102,46 +104,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
     </div>
-    
-        <!--<div layout="row" flex="100" style="background-color:violet;">
-            <div class="criteriatree" flex='{{ct_width}}'>
-                <div class="crt" data-angular-treeview="true" data-tree-id="tree01" data-tree-model="criteria" data-node-label="name" data-node-children="children" data-node-value="value" data-node-user="user">
-                </div>
-                <br>
-            </div>
-            <div flex='{{viz_width}}' layout="column">
-                <div layout="column" ng-repeat="user in users_outputs_inputs">
-                    <div layout="row">
-                        <div class="output" flex="50">
-                            <md-button class="input_butt">{{selectedName}}</md-button>
-                            <div class="user_output">
-                                <md-button class="username" ng-click="showDetailOutput = !showDetailOutput">{{user.username}}</md-button>
-                                <p>{{user["map"]["map"]}}</p>
-                                <div ng-show="showDetailOutput">
-                                    <openlayers class="maps_out" ol-center="user.map.center" height="250px">
-                                        <ol-layer ol-layer-properties="user.map"></ol-layer>
-                                    </openlayers>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="input" flex="50">
-                            <div ng-repeat="input in user['input_maps']">
-                                <md-button class="input_butt" ng-click="showDetailOutput = !showDetailOutput">{{input["name"]}}</md-button>
-                                <div ng-show="showDetailOutput">
-                                    <openlayers class="maps_out" ol-center="input.center" height="250px">
-                                        <ol-layer ol-layer-properties="input"></ol-layer>
-                                    </openlayers>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>-->
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
