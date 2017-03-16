@@ -18,6 +18,7 @@
                         "value": "0.33",
                         "map": "level_satisf_pub_services",
                         "id": "cr111",
+                        "collapsed": true,
                         "children": [
                             {
                                 "name": "A level of satisfaction with services provided by the local government between 75,00 and 85,00 is good, less is worse and more is better",
@@ -35,6 +36,7 @@
                         "value": "0.67",
                         "map": "osc_trained_staff1",
                         "id": "cr112",
+                        "collapsed": true,
                         "children": [
                             {
                                 "name": "The higher the number of positions covered for Inspection requirements and procedures the better it is",
@@ -93,6 +95,7 @@
                         "value": "0.50",
                         "map": "level_satisf_pub_services",
                         "id": "cr211",
+                        "collapsed": true,
                         "children": [
                             {
                                 "name": "A level of satisfaction with services provided by the local government between 75,00 and 85,00 is good, less is worse and more is better",
@@ -110,6 +113,7 @@
                         "value": "0.50",
                         "map": "osc_trained_staff2",
                         "id": "cr212",
+                        "collapsed": true,
                         "children": [
                             {
                                 "name": "The higher the number of positions covered for Inspection requirements and procedures the better it is",
@@ -168,6 +172,7 @@
                         "value": "0.80",
                         "map": "level_satisf_pub_services",
                         "id": "cr311",
+                        "collapsed": true,
                         "children": [
                             {
                                 "name": "A level of satisfaction with services provided by the local government between 75,00 and 85,00 is good, less is worse and more is better",
@@ -185,6 +190,7 @@
                         "value": "0.20",
                         "map": "osc_trained_staff3",
                         "id": "cr312",
+                        "collapsed": true,
                         "children": [
                             {
                                 "name": "The higher the number of positions covered for Inspection requirements and procedures the better it is",
@@ -243,6 +249,7 @@
                         "value": "0.83",
                         "map": "level_satisf_pub_services",
                         "id": "cr411",
+                        "collapsed": true,
                         "children": [
                             {
                                 "name": "A level of satisfaction with services provided by the local government between 75,00 and 85,00 is good, less is worse and more is better",
@@ -260,6 +267,7 @@
                         "value": "0.17",
                         "map": "osc_trained_staff4",
                         "id": "cr412",
+                        "collapsed": true,
                         "children": [
                             {
                                 "name": "The higher the number of positions covered for Inspection requirements and procedures the better it is",
