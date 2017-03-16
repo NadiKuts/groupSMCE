@@ -68,18 +68,95 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
             $scope.flatten_tree.push($scope.user);
 
         }
-        
+
         console.log("flatten_tree");
         console.log($scope.flatten_tree);
 
         /* Function for displaying output */
 
-        $scope.displayOutput = function (output, id) {
-            $scope.id_user = parseInt(id.charAt(2), 10);
-            $scope.showDetailOutput = true;
+        /*First, I need to create an array, where I will check, if the current user (clicked on) is already on the panel*/
 
+
+
+        $scope.users_outputs_inputs = [];
+
+        $scope.displayOutput = function (output, id) {
+            $scope.id_user = parseInt(id.charAt(2), 10) - 1;
+            $scope.selectedName = output;
+            $scope.showDetailOutput = true;
+            console.log($scope.id_user);
             if ($scope.isUser(id) == false) {
-                $scope.selectedName = output;
+                for (var i = 0; i < $scope.flatten_tree[$scope.id_user]["maps"].length; i++) {
+                    if ($scope.flatten_tree[$scope.id_user]["maps"][i]["name"] == $scope.selectedName) {
+                        /*all input maps for the selected map*/
+                        $scope.inputMaps = [];
+                        for (var j = 0; j < $scope.flatten_tree[$scope.id_user]["maps"][i]["children"].length; j++) {
+                            $scope.inpMap = {
+                                "mapname": $scope.flatten_tree[$scope.id_user]["maps"][i]["children"][j]["name"],
+                                "map": {
+                                    name: $scope.flatten_tree[$scope.id_user]["maps"][i]["children"][j]["map"],
+                                    center: {
+                                        lat: -1.95,
+                                        lon: 29.87,
+                                        zoom: 7.5
+                                    },
+                                    source: {
+                                        type: 'ImageWMS',
+                                        url: 'http://130.89.221.193:85/geoserver/wms',
+                                        params: {
+                                            'LAYERS': 'nadja_smce:' + $scope.flatten_tree[$scope.id_user]["maps"][i]["children"][j]["map"]
+                                        }
+                                    },
+                                    visible: true
+                                }
+                            };
+                            $scope.inputMaps.push($scope.inpMap);
+                        };
+
+                        $scope.userOutput = {
+                            "mapname": $scope.flatten_tree[$scope.id_user]["maps"][i]["name"],
+                            "username": $scope.flatten_tree[$scope.id_user]["username"],
+                            "map": {
+                                name: $scope.flatten_tree[$scope.id_user]["maps"][i]["map"],
+                                center: {
+                                    lat: -1.95,
+                                    lon: 29.87,
+                                    zoom: 7.5
+                                },
+                                source: {
+                                    type: 'ImageWMS',
+                                    url: 'http://130.89.221.193:85/geoserver/wms',
+                                    params: {
+                                        'LAYERS': 'nadja_smce:' + $scope.flatten_tree[$scope.id_user]["maps"][i]["map"]
+                                    }
+                                },
+                                visible: true
+                            },
+                            "input_maps": $scope.inputMaps
+                        };
+                        
+                        $scope.userProfile = {
+                            "id": $scope.id_user,
+                            "output": $scope.userOutput,
+                            "inputs": $scope.inputMaps
+                        }
+
+                    }
+                };
+                var isUserInList = false;
+                for (var k = 0; k < $scope.users_outputs_inputs.length; k++) {
+                    if ($scope.users_outputs_inputs[k].id == $scope.id_user) {
+                        $scope.users_outputs_inputs[k] = $scope.userProfile;
+                        isUserInList = true;
+                        break;
+                    }
+                }
+                if (isUserInList == false) {
+                    $scope.users_outputs_inputs.push($scope.userProfile);
+                }
+                console.log($scope.users_outputs_inputs);
+
+                /*$scope.selectedName = output;
                 console.log($scope.selectedName);
 
                 $scope.all_users_map = [];
@@ -142,7 +219,7 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
                     }
                 }
                 console.log("users_inputs");
-                console.log($scope.users_outputs_inputs);
+                console.log($scope.users_outputs_inputs);*/
                 //console.log($scope.users_inputs[0].map.)
 
             } else {
@@ -188,6 +265,12 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
             lon: 29.87,
             zoom: 7.5
         },
+        center_main: {
+            lat: -1.95,
+            lon: 29.87,
+            zoom: 8.5
+        },
+
         defaults: {
             events: {
                 map: ['singleclick']
