@@ -56,12 +56,12 @@
                 //tree template
                 var template =
                     '<ul>' +
-                    '<li data-ng-repeat="node in ' + treeModel + '" ng-click="displayOutput('+treeId +'.currentNode.name, '+ treeId+'.currentNode.id); displayInputs('+treeId +'.currentNode.name)">' +
-                    '<table><tr><td>' +
+                    '<li data-ng-repeat="node in ' + treeModel + '" >' +
+                    '<table><tr><td >' +
                     '<i class="collapsed" data-ng-show="node.' + nodeChildren + '.length && node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
                     '<i class="expanded" data-ng-show="node.' + nodeChildren + '.length && !node.collapsed" data-ng-click="' + treeId + '.selectNodeHead(node)"></i>' +
                     '<i class="normal" data-ng-hide="node.' + nodeChildren + '.length"></i> ' +
-                    '<span data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node)">{{node.' + nodeLabel + '}}</span>' + '</td><td class="value">' + '<input ng-show="!{{node.'+nodeUser+'}}" class="value_inp" style="" value="{{node.' + nodeValue + '}}" readonly></td></tr></table>' +
+                    '<span data-ng-class="node.selected" data-ng-click="' + treeId + '.selectNodeLabel(node); displayOutput('+treeId +'.currentNode.name, '+ treeId+'.currentNode.id)" >{{node.' + nodeLabel + '}}</span>' + '</td><td class="value">' + '<input ng-show="!{{node.'+nodeUser+'}}" class="value_inp" style="" value="{{node.' + nodeValue + '}}" readonly></td></tr></table>' +
                     '<div data-ng-hide="node.collapsed" data-tree-id="' + treeId + '" data-tree-model="node.' + nodeChildren + '" data-node-id=' + nodeId + ' data-node-label=' + nodeLabel + ' data-node-children=' + nodeChildren + ' data-node-value="' + nodeValue + '"></div>' +
                     '</li>' +
                     '</ul>';
