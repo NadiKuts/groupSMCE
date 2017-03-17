@@ -109,14 +109,16 @@ md-nav-bar .md-nav-bar {
 }
 
 .main_maps {
-    margin: auto !important;
-    height: 400px;
-    width: 400px
+    margin: 2% 0 0 0;
+    /*margin: auto !important;*/
+    height: 320px;
+    width: 320px
 }
 .main_maps2 {
-    margin: auto !important;
+    margin: 2% 0 0 0;
+    /*margin: auto !important;*/
     height: 300px;
-    width: 350px
+    width: 300px
 }
 
 #base,
