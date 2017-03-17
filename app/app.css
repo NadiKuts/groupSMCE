@@ -120,7 +120,21 @@ md-nav-bar .md-nav-bar {
     height: 300px;
     width: 300px
 }
-
+.legend_img {
+    margin: 2% 0 0 1%;
+    width: 70px;
+    height: 320px;
+}
+.legend_img2 {
+    margin: 2% 0 0 1%;
+    width: 70px;
+    height: 300px;
+}
+.legend_img3 {
+    margin: 2% 0 0 1%;
+    width: 50px;
+    height: 250px;
+}
 #base,
 #bar {
     margin: auto !important;
@@ -142,7 +156,15 @@ md-nav-bar .md-nav-bar {
     background-color: #7C4DFF;
     color: #EDE7F6;
 }
-
+.weight_div {
+    margin: 5px 2px 2px 10px;
+}
+.weight_inp {
+    width:35px; 
+    height: 20px;
+    margin: 0 2px 2px 8px;
+    color: #757575;
+}
 .username {
     margin: auto;
     width: 20%;

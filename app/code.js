@@ -6,6 +6,7 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
     ModelData.getData('smce_tree_structure.json').success(function (data) {
         /* JSON file with structure of criteria tree */
         $scope.criteria = data;
+        console.log("criteria tree");
         console.log($scope.criteria);
 
         /* Number of Decision-makers */
@@ -41,10 +42,10 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
             $scope.flat_criteria_tree = [];
             $scope.helper = function (user) {
                 for (var i = 0; i < user.children.length; i++) {
-                    /*console.log("USER "+user.children[i].name);*/
                     var elem = {};
                     elem.name = user.children[i].name;
                     elem.map = user.children[i].map;
+                    elem.weight = user.children[i].value;
                     if (user.children[i].children.length != 0) {
                         elem.children = user.children[i].children;
                         $scope.helper(user.children[i]);
@@ -92,6 +93,7 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
                         for (var j = 0; j < $scope.flatten_tree[$scope.id_user]["maps"][i]["children"].length; j++) {
                             $scope.inpMap = {
                                 "mapname": $scope.flatten_tree[$scope.id_user]["maps"][i]["children"][j]["name"],
+                                "weight": $scope.flatten_tree[$scope.id_user]["maps"][i]["children"][j]["value"],
                                 "map": {
                                     center: {
                                         lat: -1.95,
@@ -126,10 +128,11 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
                             };
                             $scope.inputMaps.push($scope.inpMap);
                         };
-
+                        
                         $scope.userOutput = {
                             "mapname": $scope.flatten_tree[$scope.id_user]["maps"][i]["name"],
                             "username": $scope.flatten_tree[$scope.id_user]["username"],
+                            "weight": $scope.flatten_tree[$scope.id_user]["maps"][i]["weight"],
                             "map": {
                                 center: {
                                     lat: -1.95,
