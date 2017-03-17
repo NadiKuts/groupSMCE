@@ -2,18 +2,22 @@
     <div id="const_goal" layout="row">
         <div class="map_view" flex="30">
             <p id="titl_map">Score map</p>
-            <openlayers class="main_maps" ol-center="center_main" ol-defaults="defaults">
-                <ol-layer ng-repeat="layer in method_2_mean" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>
-                <!--<ol-layer ol-layer-properties="bc_map"></ol-layer>-->
-                <!--<img src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:mean_map">-->
-            </openlayers>
+            <div layout="row">
+                <openlayers class="main_maps" ol-center="center_main" ol-defaults="defaults">
+                    <ol-layer ng-repeat="layer in method_2_mean" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>
+                </openlayers>
+                <img class="legend_img" src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:r3_score_mean_map&legend_options=bgColor:0xEDE7F6;dpi:80;fontSize:12">
+            </div>
         </div>
         <div class="map_view" flex="30">
             <p id="titl_map">Level of agreement</p>
-            <openlayers class="main_maps" ol-center="center_main" ol-defaults="defaults">
-                <ol-layer ng-repeat="layer in method_2_sd" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>
-                <!--<ol-layer ol-layer-properties="bc_sd"></ol-layer>-->
-            </openlayers>
+            <div layout="row">
+                <openlayers class="main_maps" ol-center="center_main" ol-defaults="defaults">
+                    <ol-layer ng-repeat="layer in method_2_sd" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>
+                    <!--<ol-layer ol-layer-properties="bc_sd"></ol-layer>-->
+                </openlayers>
+                <img class="legend_img" src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:r3_score_sd_map&legend_options=bgColor:0xEDE7F6;dpi:80;fontSize:12">
+            </div>
         </div>
         <div class="map_view" flex="38">
             <p id="titl_map">Diagram</p>

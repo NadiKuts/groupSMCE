@@ -194,7 +194,7 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
         center_main: {
             lat: -1.95,
             lon: 29.87,
-            zoom: 8
+            zoom: 7.8
         },
         defaults: {
             events: {
