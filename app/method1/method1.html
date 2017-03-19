@@ -8,6 +8,12 @@
                 </openlayers>
                 <img class="legend_img" src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:r3_mean_map&legend_options=bgColor:0xEDE7F6;dpi:80;fontSize:12">
             </div>
+            <i id="help" class="material-icons" ng-click="showTipp = !showTipp">help_outline</i>
+            <p id="help_tip" ng-show="showTipp">Click on the map to get: <br>
+                - The mean utility value<br>
+                - Utility value of each decision maker<br>
+                - Standard deviation value<br>
+            </p>
         </div>
         <div class="map_view" flex="30">
             <p id="titl_map">Level of agreement</p>
@@ -33,7 +39,7 @@
             </md-slider-container>
             <md-input-container class="lev_agree_val">
                 <span>Standard Deviation</span>
-                <input flex="" type="number" ng-model="sdMap" aria-label="red" aria-controls="red-slider">
+                <input flex="" type="number" ng-model="sdMap" aria-label="red" aria-controls="red-slider" readonly>
             </md-input-container>
             <div layout="column" class="table_data">
                 <div layout="row" ng-repeat="point in table_data track by $index">
@@ -42,7 +48,7 @@
                     <p flex="30">{{point.sd}}</p>
                 </div>
             </div>
-            <md-button id="del_but1" ng-click="del_last_row();" class="md-icon-button md-primary" aria-label="Delete"><i class="material-icons">delete</i></md-button>
+            <md-button id="del_but1" ng-click="del_last_row();" class="md-icon-button md-primary" aria-label="Delete"><md-tooltip>Delete the last row</md-tooltip><i class="material-icons">delete</i></md-button>
         </div>
     </div>
 </div>

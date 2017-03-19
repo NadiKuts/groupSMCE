@@ -6,8 +6,9 @@ controllers.controller('method2Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
     ModelData.getData('smce_tree_structure.json').success(function (data) {
         /* JSON file with structure of criteria tree */
         $scope.criteria = data;
-        console.log($scope.criteria);
-
+        //console.log($scope.criteria);
+        $scope.showTipp = false;
+        
         /* Number of Decision-makers */
         $scope.num_users = $scope.criteria.length;
 

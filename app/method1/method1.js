@@ -25,8 +25,9 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
         $scope.dm_maps_score = $scope.dm_maps.map(function (m) {
             return m + "_score";
         });
-
-
+        
+        $scope.showTipp = false;
+        
         $scope.colors = ['#45b7cd', '#ff6384', '#ff8e72'];
         $scope.labels = $scope.dm_names;
         $scope.scores = [[0, 0, 0, 0], [0, 0, 0, 0]];

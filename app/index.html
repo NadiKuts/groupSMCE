@@ -55,7 +55,7 @@
                     <div layout="column">
                         <div layout="row">
                             <p flex="85" id="titl_map">{{user.output.username}}</p>
-                            <md-button flex="15" id="del_but" ng-click="delete_user(user.id);" class="md-icon-button md-primary" aria-label="Delete"><i class="material-icons">clear</i></md-button>
+                            <md-button flex="15" id="del_but" ng-click="delete_user(user.id);" class="md-icon-button md-primary" aria-label="Delete"><md-tooltip>Delete the user from the panel</md-tooltip><i class="material-icons">clear</i></md-button>
                         </div>
                         <div class="output">
                             <p class="input_butt" ng-click="showDetailOutput = !showDetailOutput">{{user.output.mapname}}</p>
