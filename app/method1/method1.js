@@ -59,6 +59,11 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
             }
         };
 
+        $scope.table_data = [{
+            "district": "District",
+            "mean_value": "Mean utility value",
+            "sd": "SD value"
+        }];
 
         $scope.$on('openlayers.map.singleclick', function (event, data) {
             $scope.depends = true;
@@ -69,24 +74,9 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                     var viewProjection = view.getProjection();
                     var viewResolution = view.getResolution();
                     var zoom = view.getZoom();
-                    
-                    /* DISTRICTS map */
-                    var distr_map = new ol.source.TileWMS({
-                        url: 'http://130.89.221.193:85/geoserver/wms',
-                        params: {
-                            'LAYERS': 'nadja_smce:districts1'
-                        },
-                        serverType: 'geoserver',
-                        buffer: 10
-                    });
-                    $scope.dist_map_val = distr_map.getGetFeatureInfoUrl(data.coord, viewResolution, viewProjection, {
-                        'INFO_FORMAT': 'application/json'
-                    });
-                    $.getJSON($scope.dist_map_val, function (data) {
-                        $scope.distMap = data.features[0].properties.DISTRICT;
-                        console.log("distMap");
-                        console.log($scope.distMap);
-                    });
+
+                    console.log(viewProjection);
+                    console.log(viewResolution);
 
                     /* Utility maps */
                     var promises_ut = [];
@@ -161,7 +151,7 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         }, 1000);
 
                     });
-                    
+
                     /* SD map */
                     var sd_map = new ol.source.TileWMS({
                         url: 'http://130.89.221.193:85/geoserver/wms',
@@ -179,9 +169,54 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         console.log("sdMap");
                         console.log($scope.sdMap);
                     });
+
+                    /* DISTRICTS map */
+                    var promiseDistrict = [];
+                    var distr_map = new ol.source.TileWMS({
+                        url: 'http://130.89.221.193:85/geoserver/wms',
+                        params: {
+                            'LAYERS': 'nadja_smce:districts1'
+                        },
+                        serverType: 'geoserver',
+                        buffer: 10
+                    });
+                    $scope.dist_map_name = distr_map.getGetFeatureInfoUrl(data.coord, viewResolution, viewProjection, {
+                        'INFO_FORMAT': 'application/json'
+                    });
+                    
+                    promiseDistrict.push($.getJSON($scope.dist_map_name));
+                    $.when.apply($, promiseDistrict).then(function () {
+                        console.log("get!");
+                        $scope.distMap = arguments[0].features[0].properties.DISTRICT;
+                        $scope.point = {
+                            "district": $scope.distMap,
+                            "mean_value": $scope.meanMap[0],
+                            "sd": $scope.sdMap
+                        };
+                        
+                    });
+                    $timeout(function () {
+                        if ($scope.table_data.length < 7) {
+                            $scope.table_data.push($scope.point);
+                            console.log("table");
+                            console.log($scope.table_data);
+                        } else {
+                            $scope.table_data.splice(1, 1);
+                            $scope.table_data.push($scope.point);
+                        }
+                    }, 5000);
+
+
+
                 });
             });
         });
+        
+        $scope.del_last_row = function() {
+            if ($scope.table_data.length > 1) {
+                $scope.table_data.pop();
+            }
+        }
     });
 
     /*Maps, Openlayers*/

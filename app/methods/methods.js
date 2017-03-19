@@ -87,6 +87,17 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
             }
         };
 
+        $scope.table_data_utility = [{
+            "district": "District",
+            "mean_value": "Mean utility value",
+            "sd": "SD value"
+        }];
+        
+        $scope.table_data_score = [{
+            "district": "District",
+            "mean_score": "Mean score",
+            "sd": "SD value"
+        }];
 
         $scope.$on('openlayers.map.singleclick', function (event, data) {
             $scope.depends = true;
@@ -98,23 +109,6 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                     var viewResolution = view.getResolution();
                     var zoom = view.getZoom();
                     
-                    /* DISTRICTS map */
-                    var distr_map = new ol.source.TileWMS({
-                        url: 'http://130.89.221.193:85/geoserver/wms',
-                        params: {
-                            'LAYERS': 'nadja_smce:districts1'
-                        },
-                        serverType: 'geoserver',
-                        buffer: 10
-                    });
-                    $scope.dist_map_val = distr_map.getGetFeatureInfoUrl(data.coord, viewResolution, viewProjection, {
-                        'INFO_FORMAT': 'application/json'
-                    });
-                    $.getJSON($scope.dist_map_val, function (data) {
-                        $scope.distMap = data.features[0].properties.DISTRICT;
-                        console.log("distMap");
-                        console.log($scope.distMap);
-                    });
 
                     /* Utility maps */
                     var promises_ut = [];
@@ -242,7 +236,6 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                     });
 
                     /* SCORE MEAN map */
-                    /* mean map */
                     var promises_score_mean_map = [];
                     for (var i = 0; i < $scope.num_users; i++) {
                         // $.getJSON returns a promise
@@ -295,10 +288,66 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                         console.log("sd_score_map");
                         console.log($scope.sd_score_map);
                     });
+                    
+                    /* DISTRICTS map */
+                    var promiseDistrict = [];
+                    var distr_map = new ol.source.TileWMS({
+                        url: 'http://130.89.221.193:85/geoserver/wms',
+                        params: {
+                            'LAYERS': 'nadja_smce:districts1'
+                        },
+                        serverType: 'geoserver',
+                        buffer: 10
+                    });
+                    $scope.dist_map_name = distr_map.getGetFeatureInfoUrl(data.coord, viewResolution, viewProjection, {
+                        'INFO_FORMAT': 'application/json'
+                    });
 
+                    promiseDistrict.push($.getJSON($scope.dist_map_name));
+                    $.when.apply($, promiseDistrict).then(function () {
+                        console.log("get!");
+                        $scope.distMap = arguments[0].features[0].properties.DISTRICT;
+                        $scope.point_utility = {
+                            "district": $scope.distMap,
+                            "mean_value": $scope.meanMap[0],
+                            "sd": $scope.sdMap
+                        };
+                        $scope.point_score = {
+                            "district": $scope.distMap,
+                            "mean_score": $scope.scoreMeanMap[0],
+                            "sd": $scope.sd_score_map
+                        };
+                        
+                        
+                    });
+                    $timeout(function () {
+                        if ($scope.table_data_utility.length < 7) {
+                            $scope.table_data_utility.push($scope.point_utility);
+                        } else {
+                            $scope.table_data_utility.splice(1, 1);
+                            $scope.table_data_utility.push($scope.point_utility);
+                        }
+                        if ($scope.table_data_score.length < 7) {
+                            $scope.table_data_score.push($scope.point_score);
+                        } else {
+                            $scope.table_data_score.splice(1, 1);
+                            $scope.table_data_score.push($scope.point_score);
+                        }
+                    }, 5000);
                 });
             });
         });
+        
+        $scope.del1_last_row = function () {
+            if ($scope.table_data_utility.length > 1) {
+                $scope.table_data_utility.pop();
+            }
+        };
+        $scope.del2_last_row = function () {
+            if ($scope.table_data_score.length > 1) {
+                $scope.table_data_score.pop();
+            }
+        };
     });
 
     /*Maps, Openlayers*/

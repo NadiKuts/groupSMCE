@@ -13,15 +13,14 @@
             <p id="titl_map">Level of agreement</p>
             <div layout="row">
                 <openlayers class="main_maps" ol-center="center_main" ol-defaults="defaults">
-                    <ol-layer ng-repeat="layer in method_2_sd" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>
-                    <!--<ol-layer ol-layer-properties="bc_sd"></ol-layer>-->
+                    <ol-layer ng-repeat="layer in method_2_sd" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>                    
                 </openlayers>
                 <img class="legend_img" src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:r3_score_sd_map&legend_options=bgColor:0xEDE7F6;dpi:80;fontSize:12">
             </div>
         </div>
-        <div class="map_view" flex="38">
+        <div layout="column" class="diagram_view" flex="33">
             <p id="titl_map">Diagram</p>
-            <div class="canvas" width="100%" layout="row">
+            <div class="canvas" width="100%">
                 <canvas id="base" class="chart-bar" chart-data="dataMaps2" chart-labels="dm_names" chart-colors="colors" chart-dataset-override="datasetOverride2" chart-options="chartOptions2">
                 </canvas>
             </div>
@@ -36,6 +35,14 @@
                 <span>Standard Deviation</span>
                 <input flex="" type="number" ng-model="sd_score_map" aria-label="red" aria-controls="red-slider">
             </md-input-container>
+            <div layout="column" class="table_data">
+                <div layout="row" ng-repeat="point in table_data track by $index">
+                    <p flex="25">{{point.district}}</p>
+                    <p flex="45" style="margin:0 auto;">{{point.mean_score}}</p>
+                    <p flex="30">{{point.sd}}</p>
+                </div>
+            </div>
+            <md-button id="del_but1" ng-click="del_last_row();" class="md-icon-button md-primary" aria-label="Delete"><i class="material-icons">delete</i></md-button>
         </div>
     </div>
 </div>

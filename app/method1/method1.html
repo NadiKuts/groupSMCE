@@ -14,12 +14,11 @@
             <div layout="row">
                 <openlayers class="main_maps" ol-center="center_main" ol-defaults="defaults">
                     <ol-layer ng-repeat="layer in method_1_sd" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>
-                    <!--<ol-layer ol-layer-properties="sd_map"></ol-layer>-->
                 </openlayers>
                 <img class="legend_img" src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:r3_sd_map&legend_options=bgColor:0xEDE7F6;dpi:80;fontSize:12">
             </div>
         </div>
-        <div layout="column" class="map_view" flex="38">
+        <div layout="column" class="diagram_view" flex="33">
             <p id="titl_map">Diagram</p>
             <div class="canvas" width="100%">
                 <canvas id="base" class="chart-bar" chart-data="dataMaps1" chart-labels="dm_names" chart-colors="colors" chart-dataset-override="datasetOverride" chart-options="chartOptions1">
@@ -36,6 +35,14 @@
                 <span>Standard Deviation</span>
                 <input flex="" type="number" ng-model="sdMap" aria-label="red" aria-controls="red-slider">
             </md-input-container>
+            <div layout="column" class="table_data">
+                <div layout="row" ng-repeat="point in table_data track by $index">
+                    <p flex="25">{{point.district}}</p>
+                    <p flex="45" style="margin:0 auto;">{{point.mean_value}}</p>
+                    <p flex="30">{{point.sd}}</p>
+                </div>
+            </div>
+            <md-button id="del_but1" ng-click="del_last_row();" class="md-icon-button md-primary" aria-label="Delete"><i class="material-icons">delete</i></md-button>
         </div>
     </div>
 </div>
