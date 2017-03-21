@@ -27,16 +27,16 @@
 
 <body>
     <header class="header_div">
-        <p id="titl">Spatial Multi-Criteria Evaluation</p>
+        <p id="titl">Consensus Analysis with Spatial Multi-Criteria Evaluation</p>
     </header>
 
     <div id="methods" layout="column">
         <div flex='100' layout="column">
             <div ng-controller="NavigationCtrl">
                 <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-                    <md-nav-item md-nav-href="#/" name="method1">Ratio</md-nav-item>
-                    <md-nav-item md-nav-href="#/method2" name="method2">Ordinal</md-nav-item>
-                    <md-nav-item md-nav-href="#/methods" name="methods">Compare two methods</md-nav-item>
+                    <md-nav-item md-nav-href="#/" name="method1"><md-tooltip style="font-size:14px;">Consensus analysis with original utility values of all decision makers</md-tooltip>Absolute consensus</md-nav-item>
+                    <md-nav-item md-nav-href="#/method2" name="method2"><md-tooltip style="font-size:14px;">Consensus analysis with utility values rescaled to good, mediocre and poor locations</md-tooltip>Relative consensus</md-nav-item>
+                    <md-nav-item md-nav-href="#/methods" name="methods"><md-tooltip style="font-size:14px;">Both methods are presented</md-tooltip>Compare absolute & relative consensus</md-nav-item>
                 </md-nav-bar>
             </div>
             <div id="method_vis" ng-view></div>
@@ -69,7 +69,7 @@
                                         <openlayers class="maps_out" ol-center="user.output.map.center" height="250px">
                                             <ol-layer ng-repeat="lay in user.output.map.layers_name" ol-layer-properties="lay"></ol-layer>
                                         </openlayers>
-                                        <img class="legend_img3" src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:r3_mean_map&legend_options=bgColor:0xEDE7F6;dpi:80;fontSize:10">
+                                        <img class="legend_img_ct" src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:r3_mean_map&legend_options=bgColor:0xEDE7F6;dpi:80;fontSize:10">
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                                         <openlayers class="maps_out" ol-center="input.map.center" height="250px">
                                             <ol-layer ng-repeat="lay in input.map.layers_name" ol-layer-properties="lay"></ol-layer>
                                         </openlayers>
-                                        <img class="legend_img3" src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:r3_mean_map&legend_options=bgColor:0xEDE7F6;dpi:80;fontSize:10">
+                                        <img class="legend_img_ct" src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:r3_mean_map&legend_options=bgColor:0xEDE7F6;dpi:80;fontSize:10">
                                     </div>
                                 </div>
                             </div>

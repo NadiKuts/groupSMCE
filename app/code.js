@@ -122,13 +122,35 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
                                                 }
                                             },
                                             visible: true
+                                        },
+                                        {
+                                            name: 'districts1method',
+                                            source: {
+                                                type: 'ImageWMS',
+                                                url: 'http://130.89.221.193:85/geoserver/wms',
+                                                params: {
+                                                    'LAYERS': 'nadja_smce:districts1method'
+                                                }
+                                            },
+                                            visible: true
+                                        },
+                                        {
+                                            name: 'districts2method',
+                                            source: {
+                                                type: 'ImageWMS',
+                                                url: 'http://130.89.221.193:85/geoserver/wms',
+                                                params: {
+                                                    'LAYERS': 'nadja_smce:districts2method'
+                                                }
+                                            },
+                                            visible: true
                                         }
                                     ],
                                 }
                             };
                             $scope.inputMaps.push($scope.inpMap);
                         };
-                        
+
                         $scope.userOutput = {
                             "mapname": $scope.flatten_tree[$scope.id_user]["maps"][i]["name"],
                             "username": $scope.flatten_tree[$scope.id_user]["username"],
@@ -140,27 +162,50 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
                                     zoom: 7.5
                                 },
                                 layers_name: [
-                                        {
-                                            name: $scope.flatten_tree[$scope.id_user]["maps"][i]["map"],
-                                            source: {
-                                                type: 'ImageWMS',
-                                                url: 'http://130.89.221.193:85/geoserver/wms',
-                                                params: {
-                                                    'LAYERS': 'nadja_smce:' + $scope.flatten_tree[$scope.id_user]["maps"][i]["map"]
-                                                }
-                                            },
-                                            visible: true
+                                    {
+                                        name: $scope.flatten_tree[$scope.id_user]["maps"][i]["map"],
+                                        source: {
+                                            type: 'ImageWMS',
+                                            url: 'http://130.89.221.193:85/geoserver/wms',
+                                            params: {
+                                                'LAYERS': 'nadja_smce:' + $scope.flatten_tree[$scope.id_user]["maps"][i]["map"]
+                                            }
                                         },
-                                        {
-                                            name: 'bounds',
-                                            source: {
-                                                type: 'ImageWMS',
-                                                url: 'http://130.89.221.193:85/geoserver/wms',
-                                                params: {
-                                                    'LAYERS': 'nadja_smce:districts1'
-                                                }
-                                            },
-                                            visible: true
+                                        visible: true
+                                        },
+                                    {
+                                        name: 'bounds',
+                                        source: {
+                                            type: 'ImageWMS',
+                                            url: 'http://130.89.221.193:85/geoserver/wms',
+                                            params: {
+                                                'LAYERS': 'nadja_smce:districts1'
+                                            }
+                                        },
+                                        visible: true
+                                        },
+                                    ,
+                                    {
+                                        name: 'districts1method',
+                                        source: {
+                                            type: 'ImageWMS',
+                                            url: 'http://130.89.221.193:85/geoserver/wms',
+                                            params: {
+                                                'LAYERS': 'nadja_smce:districts1method'
+                                            }
+                                        },
+                                        visible: true
+                                        },
+                                    {
+                                        name: 'districts2method',
+                                        source: {
+                                            type: 'ImageWMS',
+                                            url: 'http://130.89.221.193:85/geoserver/wms',
+                                            params: {
+                                                'LAYERS': 'nadja_smce:districts2method'
+                                            }
+                                        },
+                                        visible: true
                                         }
                                     ],
                             }
@@ -192,9 +237,9 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
                 console.log("It is user - nothing to show!");
             }
         };
-        
+
         $scope.delete_user = function (id) {
-            console.log("id "+id);
+            console.log("id " + id);
             for (var i = 0; i < $scope.users_outputs_inputs.length; i++) {
                 if ($scope.users_outputs_inputs[i].id == id) {
                     $scope.users_outputs_inputs.splice(i, 1);
@@ -202,7 +247,7 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
             }
             console.log($scope.users_outputs_inputs);
         }
-        
+
 
         /* Toggling criteria tree panel */
 

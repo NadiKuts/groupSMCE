@@ -197,7 +197,7 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         
                     });
                     $timeout(function () {
-                        if ($scope.table_data.length < 7) {
+                        if ($scope.table_data.length < 8) {
                             $scope.table_data.push($scope.point);
                             console.log("table");
                             console.log($scope.table_data);
@@ -239,7 +239,7 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
         },
         method_1_mean: [
             {
-                name: 'mean_map',
+                name: 'Mean utility values',
                 source: {
                     type: 'ImageWMS',
                     url: 'http://130.89.221.193:85/geoserver/wms',
@@ -247,10 +247,11 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         'LAYERS': 'nadja_smce:r3_mean_map'
                     }
                 },
+                opacity: 1,
                 visible: true
             },
             {
-                name: 'bounds',
+                name: 'Boundaries of the districts',
                 source: {
                     type: 'ImageWMS',
                     url: 'http://130.89.221.193:85/geoserver/wms',
@@ -258,10 +259,11 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         'LAYERS': 'nadja_smce:districts1'
                     }
                 },
+                opacity: 1,
                 visible: true
             },
             {
-                name: 'highlight1',
+                name: 'Top 6 best locations',
                 source: {
                     type: 'ImageWMS',
                     url: 'http://130.89.221.193:85/geoserver/wms',
@@ -269,13 +271,14 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         'LAYERS': 'nadja_smce:districts1method'
                     }
                 },
+                opacity: 1,
                 visible: true
             }
 
         ],
         method_1_sd: [
             {
-                name: 'sd_map',
+                name: 'Level of agreement',
                 source: {
                     type: 'ImageWMS',
                     url: 'http://130.89.221.193:85/geoserver/wms',
@@ -283,10 +286,11 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         'LAYERS': 'nadja_smce:r3_sd_map'
                     }
                 },
+                opacity: 1,
                 visible: true
             },
             {
-                name: 'bounds',
+                name: 'Boundaries of the districts',
                 source: {
                     type: 'ImageWMS',
                     url: 'http://130.89.221.193:85/geoserver/wms',
@@ -294,10 +298,11 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         'LAYERS': 'nadja_smce:districts1'
                     }
                 },
+                opacity: 1,
                 visible: true
             },
             {
-                name: 'highlight1',
+                name: 'Top 6 best locations',
                 source: {
                     type: 'ImageWMS',
                     url: 'http://130.89.221.193:85/geoserver/wms',
@@ -305,12 +310,13 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         'LAYERS': 'nadja_smce:districts1method'
                     }
                 },
+                opacity: 1,
                 visible: true
             }
         ],
         method_2_mean: [
             {
-                name: 'score_mean_map',
+                name: 'Score values',
                 source: {
                     type: 'ImageWMS',
                     url: 'http://130.89.221.193:85/geoserver/wms',
@@ -318,10 +324,11 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         'LAYERS': 'nadja_smce:r3_score_mean_map'
                     }
                 },
+                opacity: 1,
                 visible: true
             },
             {
-                name: 'bounds',
+                name: 'Boundaries if the districts',
                 source: {
                     type: 'ImageWMS',
                     url: 'http://130.89.221.193:85/geoserver/wms',
@@ -329,10 +336,11 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         'LAYERS': 'nadja_smce:districts1'
                     }
                 },
+                opacity: 1,
                 visible: true
             },
             {
-                name: 'highlight2',
+                name: 'Top 6 best locations',
                 source: {
                     type: 'ImageWMS',
                     url: 'http://130.89.221.193:85/geoserver/wms',
@@ -340,12 +348,13 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         'LAYERS': 'nadja_smce:districts2method'
                     }
                 },
+                opacity: 1,
                 visible: true
             }
         ],
         method_2_sd: [
             {
-                name: 'score_sd_map',
+                name: 'Level of agreement',
                 source: {
                     type: 'ImageWMS',
                     url: 'http://130.89.221.193:85/geoserver/wms',
@@ -353,10 +362,11 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         'LAYERS': 'nadja_smce:r3_score_sd_map'
                     }
                 },
+                opacity: 1,
                 visible: true
             },
             {
-                name: 'bounds',
+                name: 'Boundaries of the districts',
                 source: {
                     type: 'ImageWMS',
                     url: 'http://130.89.221.193:85/geoserver/wms',
@@ -364,10 +374,11 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         'LAYERS': 'nadja_smce:districts1'
                     }
                 },
+                opacity: 1,
                 visible: true
             },
             {
-                name: 'highlight2',
+                name: 'Top 6 best locations',
                 source: {
                     type: 'ImageWMS',
                     url: 'http://130.89.221.193:85/geoserver/wms',
@@ -375,6 +386,7 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         'LAYERS': 'nadja_smce:districts2method'
                     }
                 },
+                opacity: 1,
                 visible: true
             }
         ],
