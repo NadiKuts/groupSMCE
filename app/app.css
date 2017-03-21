@@ -105,6 +105,11 @@ body {
     margin-top: -20px;
     margin-left: -300px;
 }
+#ct_help {
+    width: 300px;
+    height: 200px;
+    margin-left: -100px;
+}
 
 /* legends */
 .legend {

@@ -34,16 +34,24 @@
         <div flex='100' layout="column">
             <div ng-controller="NavigationCtrl">
                 <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-                    <md-nav-item md-nav-href="#/" name="method1"><md-tooltip style="font-size:14px;">Consensus analysis with original utility values of all decision makers</md-tooltip>Absolute consensus</md-nav-item>
-                    <md-nav-item md-nav-href="#/method2" name="method2"><md-tooltip style="font-size:14px;">Consensus analysis with utility values rescaled to good, mediocre and poor locations</md-tooltip>Relative consensus</md-nav-item>
-                    <md-nav-item md-nav-href="#/methods" name="methods"><md-tooltip style="font-size:14px;">Both methods are presented</md-tooltip>Compare absolute & relative consensus</md-nav-item>
+                    <md-nav-item md-nav-href="#/" name="method1">
+                        <md-tooltip style="font-size:14px;">Consensus analysis with original utility values of all decision makers</md-tooltip>Absolute consensus</md-nav-item>
+                    <md-nav-item md-nav-href="#/method2" name="method2">
+                        <md-tooltip style="font-size:14px;">Consensus analysis with utility values rescaled to good, mediocre and poor locations</md-tooltip>Relative consensus</md-nav-item>
+                    <md-nav-item md-nav-href="#/methods" name="methods">
+                        <md-tooltip style="font-size:14px;">Both methods are presented</md-tooltip>Compare absolute & relative consensus</md-nav-item>
                 </md-nav-bar>
             </div>
             <div id="method_vis" ng-view></div>
         </div>
     </div>
     <div id="crt_panel" ng-controller="criteriaTreeCtrl">
-        <md-button id="collapse_ct" ng-click="toggleCriteriaTree()">{{nameButton}}</md-button>
+        <div layout="row">
+            <md-button id="collapse_ct" ng-click="toggleCriteriaTree()">{{nameButton}}</md-button>
+            <div class="help"><i class="material-icons">help_outline</i>
+                <span class="tooltiptext" id="ct_help">On the left side of the panel below, the criteria trees with weights of all decision makers are shown. Click on the goal / objective / criteria to see its map of chosen user. It is also possible to choose several users, which will be displayed on the right side. For better interaction, you can collapse the tree by clicking the button "Hide criteria tree". Clicking the same button, you can expand the tree back. On the right side, the chosen map will be on the top, and all sub-objectives or criteria will be visualized below. To collapse / expand the map, click the button with the name</span>
+            </div>
+        </div>
         <div layout="row" flex="100">
             <div class="criteriatree" flex='{{ct_width}}'>
                 <div ng-repeat="crit in criteria" class="crt" data-angular-treeview="true" data-tree-id="tree01" data-tree-model="crit" data-node-label="name" data-node-children="children" data-node-value="value" data-node-user="user">
@@ -55,7 +63,8 @@
                     <div layout="column">
                         <div layout="row">
                             <p flex="85" id="titl_map">{{user.output.username}}</p>
-                            <md-button flex="15" id="del_but" ng-click="delete_user(user.id);" class="md-icon-button md-primary" aria-label="Delete"><md-tooltip>Delete the user from the panel</md-tooltip><i class="material-icons">clear</i></md-button>
+                            <md-button flex="15" id="del_but" ng-click="delete_user(user.id);" class="md-icon-button md-primary" aria-label="Delete">
+                                <md-tooltip>Delete the user from the panel</md-tooltip><i class="material-icons">clear</i></md-button>
                         </div>
                         <div class="output">
                             <p class="input_butt" ng-click="showDetailOutput = !showDetailOutput">{{user.output.mapname}}</p>
