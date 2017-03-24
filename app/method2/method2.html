@@ -20,10 +20,10 @@
                     </div>
                 </div>
             </div>
-            <form style="padding: 0 10px 0 10px;" ng-repeat="layer in method_2_mean">
-                <div>
-                    <p> {{layer.name}} </p>
-                    <md-slider min="0" max="1" step="0.01" ng-model="layer.opacity" class="md-primary"></md-slider>
+            <form style="padding: 0 5px 0 5px;" ng-repeat="layer in method_2_mean">
+                <div layout="row">
+                    <p flex="50" style="margin: auto 0;"> {{layer.name}} </p>
+                    <md-slider flex="50" style="margin: auto 0;" min="0" max="1" step="0.01" ng-model="layer.opacity" class="md-primary"></md-slider>
                 </div>
             </form>
         </div>
@@ -31,7 +31,7 @@
             <div layout="row">
                 <p flex="90" id="titl_map">Level of agreement</p>
                 <div class="help"><i class="material-icons">help_outline</i>
-                    <span class="tooltiptext" id="m1sd">The map shows standard deviation of the mean score map on the chosen location. The less value of standard deviation, the higher the level of agreement. To get the value of the level of agreement on particular location, click on the map. The standard deviation value will be shown on the slider on the right panel. Polygons, highlighted with blue color are top 6 locations with high mean utility value. Move the cursor of the slider near the layer, opacity of which you want to change.</span>
+                    <span class="tooltiptext" id="m1sd">The map shows standard deviation of the mean score map on the chosen location. The less standard deviation, the higher the level of agreement. To get the value of the level of agreement on particular location, click on the map. The standard deviation will be shown on the slider on the right panel. Polygons, highlighted with blue color are top 6 locations with high mean utility value. Move the cursor of the slider near the layer, opacity of which you want to change.</span>
                 </div>
             </div>
             <div layout="row">
@@ -39,7 +39,7 @@
                     <ol-layer ng-repeat="layer in method_2_sd" name="{{ layer.name }}" ol-layer-properties="layer"></ol-layer>                    
                 </openlayers>
                 <div layout="column" class="legend">
-                    <p style="font-size:10px;">SD values</p>
+                    <p style="font-size:9px;">Standard Deviation</p>
                     <img class="legend_img" src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:r3_score_sd_map&legend_options=bgColor:0xEDE7F6;dpi:80;fontSize:12">
                     <div layout="row">
                         <img style="height:20px; width:20px" src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:districts2method&legend_options=bgColor:0xEDE7F6;dpi:100;fontSize:12">
@@ -47,10 +47,10 @@
                     </div>
                 </div>
             </div>
-            <form style="padding: 0 10px 0 10px;" ng-repeat="layer in method_2_sd">
-                <div>
-                    <p> {{layer.name}} </p>
-                    <md-slider min="0" max="1" step="0.01" ng-model="layer.opacity" class="md-primary"></md-slider>
+            <form style="padding: 0 5px 0 5px;" ng-repeat="layer in method_2_sd">
+                <div layout="row">
+                    <p flex="50" style="margin: auto 0;"> {{layer.name}} </p>
+                    <md-slider flex="50" style="margin: auto 0;" min="0" max="1" step="0.01" ng-model="layer.opacity" class="md-primary"></md-slider>
                 </div>
             </form>
         </div>
@@ -58,7 +58,7 @@
             <div layout="row">
                 <p flex="90" id="titl_diagram">Rescaled utility values of all decision makers and the level of agreement for the chosen location</p>
                 <div class="help"><i class="material-icons">help_outline</i>
-                    <span class="tooltiptext" id="m1diag">On the diagram the rescaled utility values (scores) of all decision makers and the mean score on chosen location will be shown after clicking on some place of the map. The slider represent the level of agreement - the standard deviation value on chosen location. In the table below, the name of the district, mean score and SD value will be saved from the last 7 chosen locations. It can take some time to recieve response from the server. To delete the last row, click button under the table</span>
+                    <span class="tooltiptext" id="m1diag">On the diagram the rescaled utility values (scores) of all decision makers and the mean score on chosen location will be shown after clicking on some place of the map. The slider represents the level of agreement - the standard deviation on chosen location. In the table below, the name of the district, mean score and standard deviation will be saved from the last 7 chosen locations. It can take some time to recieve response from the server. To delete the last row, click button under the table</span>
                 </div>
             </div>
             <div layout="row">
@@ -78,7 +78,8 @@
                 </md-slider-container>
                 <!--<img class="legend_img_d2" src="http://130.89.221.193:85/geoserver/wms?&REQUEST=GetLegendGraphic&VERSION=1.0.0&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=nadja_smce:r3_score_sd_map&legend_options=bgColor:0xEDE7F6;dpi:80;fontSize:14">-->
             </div>
-            
+            <p id="titl_diagram">Table of most recent locations clicked</p>
+            <md-progress-linear ng-show="inProcess" md-mode="indeterminate"></md-progress-linear>
             <div layout="column" class="table_data">
                 <div layout="row" ng-repeat="point in table_data track by $index">
                     <p flex="25">{{point.district}}</p>

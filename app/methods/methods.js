@@ -101,6 +101,7 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
         }];
 
         $scope.$on('openlayers.map.singleclick', function (event, data) {
+            $scope.inProcess = true;
             $scope.depends = true;
             $scope.$apply(function () {
                 olData.getMap().then(function (map) {
@@ -334,6 +335,7 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
                             $scope.table_data_score.splice(1, 1);
                             $scope.table_data_score.push($scope.point_score);
                         }
+                        $scope.inProcess = false;
                     }, 5000);
                 });
             });

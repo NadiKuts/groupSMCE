@@ -4,6 +4,9 @@ var controllers = angular.module('smce');
 
 controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'olData', 'ModelData', function ($scope, $log, $timeout, $http, olData, ModelData) {
     ModelData.getData('smce_tree_structure.json').success(function (data) {
+        
+        
+        
         /* JSON file with structure of criteria tree */
         $scope.criteria = data;
         console.log($scope.criteria);
@@ -25,9 +28,9 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
         $scope.dm_maps_score = $scope.dm_maps.map(function (m) {
             return m + "_score";
         });
-        
+
         $scope.showTipp = false;
-        
+
         $scope.colors = ['#45b7cd', '#ff6384', '#ff8e72'];
         $scope.labels = $scope.dm_names;
         $scope.scores = [[0, 0, 0, 0], [0, 0, 0, 0]];
@@ -67,6 +70,7 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
         }];
 
         $scope.$on('openlayers.map.singleclick', function (event, data) {
+            $scope.inProcess = true;
             $scope.depends = true;
             $scope.$apply(function () {
                 olData.getMap().then(function (map) {
@@ -111,7 +115,6 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                         $timeout(function () {
                             $scope.dataMaps1[0] = $scope.utility_values;
                             $scope.dataMaps1[1] = $scope.meanMap;
-
                         }, 1000);
 
                     });
@@ -184,7 +187,7 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                     $scope.dist_map_name = distr_map.getGetFeatureInfoUrl(data.coord, viewResolution, viewProjection, {
                         'INFO_FORMAT': 'application/json'
                     });
-                    
+
                     promiseDistrict.push($.getJSON($scope.dist_map_name));
                     $.when.apply($, promiseDistrict).then(function () {
                         console.log("get!");
@@ -194,7 +197,7 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                             "mean_value": $scope.meanMap[0],
                             "sd": $scope.sdMap
                         };
-                        
+
                     });
                     $timeout(function () {
                         if ($scope.table_data.length < 8) {
@@ -205,6 +208,7 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                             $scope.table_data.splice(1, 1);
                             $scope.table_data.push($scope.point);
                         }
+                        $scope.inProcess = false;
                     }, 5000);
 
 
@@ -212,8 +216,8 @@ controllers.controller('method1Ctrl', ['$scope', '$log', '$timeout', '$http', 'o
                 });
             });
         });
-        
-        $scope.del_last_row = function() {
+
+        $scope.del_last_row = function () {
             if ($scope.table_data.length > 1) {
                 $scope.table_data.pop();
             }

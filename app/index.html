@@ -28,7 +28,7 @@
 
 <body>
     <header class="header_div">
-        <p id="titl">Consensus Analysis with Spatial Multi-Criteria Evaluation</p>
+        <p id="titl">Consensus Analysis with Spatial Multi-Criteria Evaluation about the best districts in Rwanda on spatial planning</p>
     </header>
 
     <div id="methods" layout="column">
@@ -48,7 +48,7 @@
     </div>
     <div id="crt_panel" ng-controller="criteriaTreeCtrl">
         <div layout="row">
-            <md-button id="collapse_ct" ng-click="toggleCriteriaTree()">{{nameButton}}</md-button>
+            <md-button id="collapse_ct" ng-click="toggleCriteriaTree()" ng-model="">{{nameButton}}</md-button>
             <div class="help"><i class="material-icons">help_outline</i>
                 <span class="tooltiptext" id="ct_help">On the left side of the panel below, the criteria trees with weights of all decision makers are shown. Click on the goal / objective / criteria to see its map of chosen user. It is also possible to choose several users, which will be displayed on the right side. For better interaction, you can collapse the tree by clicking the button "Hide criteria tree". Clicking the same button, you can expand the tree back. On the right side, the chosen map will be on the top, and all sub-objectives or criteria will be visualized below. To collapse / expand the map, click the button with the name</span>
             </div>

@@ -13,7 +13,7 @@ body {
 
 #titl {
     font-family: 'Lato';
-    font-size: 2em;
+    font-size: 1.8em;
     color: white;
     padding-left: 15px;
     padding-top: 15px;
@@ -65,10 +65,9 @@ body {
 
 .help .tooltiptext {
     font-family: 'Lato';
-    font-size: 12px;
+    font-size: 14px;
     visibility: hidden;
-    background-color: black;
-    opacity: 0.7;
+    background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
     text-align: center;
     border-radius: 6px;
@@ -85,30 +84,30 @@ body {
     visibility: visible;
 }
 #m1mean {
-    width: 300px;
-    height: 150px;
-    margin-left: -200px;
-}
-#m2mean {
-    width: 320px;
-    height: 200px;
+    width: 350px;
+    height: 170px;
     margin-left: -230px;
 }
+#m2mean {
+    width: 370px;
+    height: 240px;
+    margin-left: -290px;
+}
 #m1sd {
-    width: 300px;
-    height: 180px;
-    margin-left: -200px;
+    width: 350px;
+    height: 210px;
+    margin-left: -250px;
 }
 #m1diag {
-    width: 300px;
-    height: 180px;
+    width: 360px;
+    height: 210px;
     margin-top: -20px;
-    margin-left: -300px;
+    margin-left: -350px;
 }
 #ct_help {
-    width: 300px;
-    height: 200px;
-    margin-left: -100px;
+    width: 350px;
+    height: 250px;
+    margin-left: -200px;
 }
 
 /* legends */
@@ -128,7 +127,7 @@ body {
 .legend_img_both {
     margin: 2% 0 0 1%;
     width: 70px;
-    height: 280px;
+    height: 290px;
 }
 .legend_img_ct {
     margin: 2% 0 0 1%;
@@ -140,11 +139,12 @@ body {
     color:black; 
     margin: auto !important;
 }
+
 .main_maps {
     margin: 2% 0 0 0;
     /*margin: auto !important;*/
-    height: 320px;
-    width: 320px
+    width: 320px;
+    height: 320px
 }
 .main_maps2 {
     margin: 2% 0 0 0;
@@ -152,6 +152,12 @@ body {
     height: 300px;
     width: 320px
 }
+
+
+.opacityLayer {
+    padding: 0;
+}
+
 
 /* DIAGRAMM VIEW */
 .diagram_view {
