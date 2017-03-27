@@ -6,8 +6,8 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
     ModelData.getData('smce_tree_structure.json').success(function (data) {
         /* JSON file with structure of criteria tree */
         $scope.criteria = data;
-        console.log("criteria tree");
-        console.log($scope.criteria);
+        //console.log("criteria tree");
+        //console.log($scope.criteria);
 
         /* Number of Decision-makers */
         $scope.num_users = $scope.criteria.length;
@@ -70,8 +70,8 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
 
         }
 
-        console.log("flatten_tree");
-        console.log($scope.flatten_tree);
+        //console.log("flatten_tree");
+        //console.log($scope.flatten_tree);
 
         /* Function for displaying output */
 
@@ -81,6 +81,13 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
 
         /* Function for visualization maps of decision makers on criteria panel onclick */
         $scope.displayOutput = function (output, id) {
+            if (id.length == 4) {
+                $scope.ranges = ["0.34-0.84", "0.32-0.7", "0.32-0.86", "0.12-0.88"];
+                $scope.showRange = true;
+            } else {
+                $scope.showRange = false;
+            }
+            console.log(id);
             $scope.id_user = parseInt(id.charAt(2), 10) - 1;
             $scope.selectedName = output;
             $scope.showDetailOutput = true;
@@ -210,13 +217,21 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
                                     ],
                             }
                         };
-
+                        
                         $scope.userProfile = {
                             "id": $scope.id_user,
                             "output": $scope.userOutput,
                             "inputs": $scope.inputMaps
                         }
-
+                        if (id.length == 4) {
+                            $scope.userProfile["range"] = $scope.ranges[$scope.id_user];
+                            //console.log("Range");
+                            //console.log($scope.userProfile);
+                        } else {
+                            $scope.userProfile["range"] = "";
+                            //console.log($scope.userProfile);
+                        }
+                        
                     }
                 };
                 var isUserInList = false;
@@ -230,22 +245,22 @@ controllers.controller('criteriaTreeCtrl', ['$scope', '$log', '$timeout', '$http
                 if (isUserInList == false) {
                     $scope.users_outputs_inputs.push($scope.userProfile);
                 }
-                console.log($scope.users_outputs_inputs);
+                //console.log($scope.users_outputs_inputs);
 
             } else {
                 /* Do not show anything in "output" panel, if user click on "User" in criteria tree*/
-                console.log("It is user - nothing to show!");
+                //console.log("It is user - nothing to show!");
             }
         };
 
         $scope.delete_user = function (id) {
-            console.log("id " + id);
+            //console.log("id " + id);
             for (var i = 0; i < $scope.users_outputs_inputs.length; i++) {
                 if ($scope.users_outputs_inputs[i].id == id) {
                     $scope.users_outputs_inputs.splice(i, 1);
                 }
             }
-            console.log($scope.users_outputs_inputs);
+            //console.log($scope.users_outputs_inputs);
         }
 
 
