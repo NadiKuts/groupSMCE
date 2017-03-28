@@ -344,6 +344,7 @@ controllers.controller('methodsCtrl', ['$scope', '$log', '$timeout', '$http', 'o
         $scope.del1_last_row = function () {
             if ($scope.table_data_utility.length > 1) {
                 $scope.table_data_utility.pop();
+                $scope.table_data_score.pop();
             }
         };
         $scope.del2_last_row = function () {
